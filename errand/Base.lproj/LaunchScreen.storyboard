@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBg" translatesAutoresizingMaskIntoConstraints="NO" id="Yw8-XY-nlT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医路行" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEd-kQ-09p">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="zLQ-wi-lJA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zLQ-wi-lJA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="zLQ-wi-lJA"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yw8-XY-nlT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6C0-lC-RLy"/>
+                            <constraint firstItem="Yw8-XY-nlT" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="72j-42-Bwd"/>
+                            <constraint firstItem="DEd-kQ-09p" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="HyX-RD-NKV"/>
+                            <constraint firstItem="Yw8-XY-nlT" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="1.38:1.08" id="TaB-8z-DBt"/>
+                            <constraint firstItem="DEd-kQ-09p" firstAttribute="top" secondItem="Yw8-XY-nlT" secondAttribute="bottom" constant="10" id="WdL-l6-5E2"/>
+                            <constraint firstItem="DEd-kQ-09p" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YAZ-Pr-2Fb"/>
+                            <constraint firstItem="Yw8-XY-nlT" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="f57-uk-HLM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Yw8-XY-nlT"/>
+                                <exclude reference="DEd-kQ-09p"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="HyX-RD-NKV"/>
+                                <exclude reference="WdL-l6-5E2"/>
+                                <exclude reference="YAZ-Pr-2Fb"/>
+                                <exclude reference="6C0-lC-RLy"/>
+                                <exclude reference="72j-42-Bwd"/>
+                                <exclude reference="TaB-8z-DBt"/>
+                                <exclude reference="f57-uk-HLM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Yw8-XY-nlT"/>
+                                <include reference="DEd-kQ-09p"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="HyX-RD-NKV"/>
+                                <include reference="WdL-l6-5E2"/>
+                                <include reference="YAZ-Pr-2Fb"/>
+                                <include reference="6C0-lC-RLy"/>
+                                <include reference="72j-42-Bwd"/>
+                                <include reference="TaB-8z-DBt"/>
+                                <include reference="f57-uk-HLM"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="209"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loginBg" width="360" height="460"/>
+    </resources>
+</document>

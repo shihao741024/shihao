@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>工作会议室</string>
+	<string>团队建设费</string>
+	<string>开发费</string>
+	<string>打单费</string>
+	<string>重点维护费</string>
+	<string>日常维护费</string>
+	<string>科室会</string>
+	<string>城市会</string>
+	<string>区域沙龙</string>
+	<string>临床试验费（新病例收集）</string>
+	<string>学术年费</string>
+	<string>物业费</string>
+	<string>办公费</string>
+	<string>房租</string>
+	<string>置办费</string>
+	<string>水电费</string>
+	<string>电话费</string>
+</array>
+</plist>
