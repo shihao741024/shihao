@@ -43,6 +43,7 @@
     self.title = @"医生详情";
     _pageIndex = 1;
     [self addBackButton];
+    
     self.view.backgroundColor = COMMON_BACK_COLOR;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -53,12 +54,20 @@
     [self getDynamicInfo];
 }
 
+- (void)navigationItemClicked:(UIButton *)barButtonItem
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 - (void)getDynamicInfo
 {
     NSString *urlStr = [BASEURL stringByAppendingString:@"/api/v1/doctors/summary"];
     NSDictionary *dic = @{@"page": [NSNumber numberWithInteger:_pageIndex],
                           @"size": @"10",
-                          @"doctor": @{@"id": _doctorModel.doctorID}};
+                          @"doctor": @{@"id": _doctorID}};
     
     [Function generalPostRequest:urlStr infoDic:dic resultCB:^(id responseObject) {
         
@@ -92,7 +101,10 @@
 - (void)rightItemTitleClick
 {
     DoctorFillViewController *doctorFillCtrl = [[DoctorFillViewController alloc] init];
-    doctorFillCtrl.doctorModel = _doctorModel;
+    doctorFillCtrl.doctorID = _doctorID;
+    doctorFillCtrl.automaticallyAdjustsScrollViewInsets = NO;
+    doctorFillCtrl.edgesForExtendedLayout = UIRectEdgeTop;
+    doctorFillCtrl.extendedLayoutIncludesOpaqueBars = YES;
     [self.navigationController pushViewController:doctorFillCtrl animated:YES];
     
     [doctorFillCtrl updateInfoSuccessAction:^{
@@ -218,7 +230,8 @@
 
 - (void)prepareData
 {
-    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/%@", _doctorModel.doctorID];
+    
+    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/%@", _doctorID];
     [self showHintInView:self.view];
     [Function generalGetRequest:urlStr infoDic:nil resultCB:^(id responseObject) {
         [self hideHud];

@@ -10,6 +10,8 @@
 
 @interface VisitRecordDetailViewController : UIViewController
 
-@property (nonatomic, strong) NSDictionary *visitDic;
+//@property (nonatomic, strong) NSDictionary *visitDic;
+
+@property(nonatomic, strong) NSNumber *visitID;
 
 @end

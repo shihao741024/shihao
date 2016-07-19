@@ -332,7 +332,8 @@
         NSString *urlStr = [BASEURL stringByAppendingString:@"/api/v1/sales/refresh"];
         [Function generalGetRequest:urlStr infoDic:nil resultCB:^(id responseObject) {
             
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];        [user setObject:responseObject[@"name"] forKey:@"name"];
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setObject:responseObject[@"name"] forKey:@"name"];
             [user setObject:responseObject[@"id"] forKey:@"userID"];
             [user setObject:responseObject[@"telephone"] forKey:@"userName"];
             [user setObject:responseObject[@"organization"][@"id"] forKey:@"organizationID"];
@@ -346,6 +347,7 @@
             }
 //             position == 0 ? "代表" : position == 1 ? "主管" : position == 2 ? "经理" : position == 3 ? "总监" : "总经理";
             [user setObject:responseObject[@"position"] forKey:@"position"];
+            
             [user synchronize];
             
         } errorCB:^(NSError *error) {

@@ -11,6 +11,6 @@
 
 @interface CreateVisitInfoViewController : UIViewController
 
-- (void)uploadFinishRefreshAction:(void(^)())action;
+- (void)uploadFinishRefreshAction:(void(^)(NSString *dateStr))action;
 
 @end

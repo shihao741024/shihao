@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) DoctorsModel *doctorModel;
 
+@property(nonatomic, strong)NSNumber *doctorID;
+
 - (void)updateInfoSuccessAction:(void(^)())action;
 
 @end

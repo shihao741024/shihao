@@ -11,6 +11,9 @@
 #import "ProductionsViewController.h"
 #import "ProductionModel.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+#import "ContactssViewController.h"
+
 #import "ContactModel.h"
 #import "DistriSelectView.h"
 #import "OptionSelectDistriViewController.h"
@@ -237,7 +240,7 @@
 //    NSDictionary *cacheFile = [self searchCacheFileExist];
     if (_type == 0) {
         _titleArray = @[@"产品名称：", @"选择客户：", @"配送商业：", @"上报开始时间：", @"上报结束时间："];
-        _placeholderArray = @[@"请选择产品", @"请选择客户", @"填写配送商业或点击按钮", @"", @""];
+        _placeholderArray = @[@"请选择产品", @"请选择客户", @"填写配送商业或选择", @"", @""];
         if (_saveDic) {
             [self readSearchHistory:_saveDic];
         }else {
@@ -259,7 +262,7 @@
         
     }else if (_type == 2) {
         _titleArray = @[@"产品名称：", @"选择客户：", @"配送商业：", @"上报开始时间：", @"上报结束时间："];
-        _placeholderArray = @[@"请选择产品", @"请选择客户", @"填写配送商业或点击按钮", @"", @""];
+        _placeholderArray = @[@"请选择产品", @"请选择客户", @"填写配送商业或选择", @"", @""];
         if (_saveDic) {
             [self readSearchHistory:_saveDic];
         }else {
@@ -309,13 +312,17 @@
 }
 - (void)addChooseButton:(UITableViewCell *)cell
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 55, 10, 50, 24)];
     [button setTitle:@"选择" forState:UIControlStateNormal];
-    button.frame = CGRectMake(kWidth-10-30, 0, 30, 44);
+    [button.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    button.backgroundColor = COMMON_BLUE_COLOR;
+    button.layer.cornerRadius = 12;
+    button.clipsToBounds = YES;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(chooseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     button.tag = 21547;
-    button.titleLabel.font = GDBFont(15);
     [cell.contentView addSubview:button];
+    
 }
 
 - (void)chooseBusinessClick:(UIButton *)button
@@ -536,13 +543,28 @@
 - (void)showHospitalCtrl:(NSIndexPath *)indexPath
 {
     if (_type == 2) {
-        ContactViewController *contactVC = [[ContactViewController alloc]init];
+//        if (_productModel) {
+//            ContactssViewController *contactVC = [[ContactssViewController alloc]init];
+//            contactVC.type = 5;
+//            [self.navigationController pushViewController:contactVC animated:YES];
+//        } else {
+//            CompetitionVC *competitionVC = [[CompetitionVC alloc]init];
+//            competitionVC.type = 1;
+//            [self.navigationController pushViewController:competitionVC animated:YES];
+//            [competitionVC setFeedBackProductionModelBlock:^(ProductionModel *model) {
+//                _productModel = model;
+//                [self fillProductInfo:model];
+//                [_tableView reloadData];
+//            }];
+//        }
+        
+        ContactssViewController *contactVC = [[ContactssViewController alloc]init];
         contactVC.type = 5;
         [self.navigationController pushViewController:contactVC animated:YES];
+        
     }else {
         if (_productModel) {
-            
-            ContactViewController *contactVC = [[ContactViewController alloc]init];
+            ContactssViewController *contactVC = [[ContactssViewController alloc]init];
             if (_type == 0) {
                 contactVC.type = 3;
             }else if (_type == 1) {
@@ -552,7 +574,6 @@
             [self.navigationController pushViewController:contactVC animated:YES];
             
         }else {
-            
             ProductionsViewController *productionsVC = [[ProductionsViewController alloc]init];
             if (_type == 0) {
                 productionsVC.type = 1;

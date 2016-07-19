@@ -15,6 +15,7 @@
 @property(nonatomic, copy)NSString *phoneNumber;
 //*下达任务的人*/
 @property(nonatomic, copy)NSString *receiverName;
+@property(nonatomic, copy)NSNumber *belongId;
 @property(nonatomic, copy)NSString *stauts;
 @property(nonatomic, copy)NSString *contentStr;
 @property(nonatomic, copy)NSString *planCompleteDate;

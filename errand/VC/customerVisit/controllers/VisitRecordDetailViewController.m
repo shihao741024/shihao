@@ -9,6 +9,8 @@
 #import "VisitRecordDetailViewController.h"
 #import "VisitRecordDetailTableViewCell.h"
 #import "VisitDetailSubTitleTableViewCell.h"
+#import "DoctorDetailShowViewController.h"
+#import "DoctorsModel.h"
 
 @interface VisitRecordDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -16,7 +18,9 @@
     NSMutableArray *_titleArray;
     
     NSDictionary *_resultDic;
+    
 }
+
 @end
 
 @implementation VisitRecordDetailViewController
@@ -31,6 +35,8 @@
     [self dataConfig];
     [self uiConfig];
     [self prepareData];
+    
+    
 }
 
 - (void)dataConfig
@@ -51,7 +57,7 @@
 
 - (void)prepareData
 {
-    NSString *pathStr = [NSString stringWithFormat:@"/api/v1/sale/visitplans/%@", _visitDic[@"id"]];//_visitDic[@"id"]
+    NSString *pathStr = [NSString stringWithFormat:@"/api/v1/sale/visitplans/%@", _visitID];//_visitDic[@"id"]
     NSString *urlStr = [BASEURL stringByAppendingString:pathStr];
     
     [self showHintInView:self.view];
@@ -75,6 +81,8 @@
     if (![Function isBlankStrOrNull:_resultDic[@"summary"]]) {
         [_titleArray addObject:@"summary"];
     }
+    
+
     [_tableView reloadData];
 }
 
@@ -109,7 +117,9 @@
         if (!cell) {
             cell = [[VisitRecordDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellid];
         }
-        
+        [cell setDoctorNameLableClick:^(NSNumber *doctorId) {
+            [self showDoctorDetailVC:doctorId];
+        }];
         [cell fillData:_resultDic cornerStyle:[self getCornerStyleWithTitle:_titleArray[indexPath.row]]];
         return cell;
         
@@ -123,13 +133,36 @@
         if ([_titleArray[indexPath.row] isEqualToString:@"content"]) {
             [cell fillDataWithTitle:@"拜访内容" detail:_resultDic[@"content"] cornerStyle:[self getCornerStyleWithTitle:_titleArray[indexPath.row]]];
         }else {
-            [cell fillDataWithTitle:@"拜访总结" detail:_resultDic[@"summary"] cornerStyle:[self getCornerStyleWithTitle:_titleArray[indexPath.row]]];
+            if ([_resultDic[@"status"] isEqual:@3]) {
+                [cell fillDataWithTitle:@"失访原因" detail:_resultDic[@"summary"] cornerStyle:[self getCornerStyleWithTitle:_titleArray[indexPath.row]]];
+            }else {
+                [cell fillDataWithTitle:@"拜访总结" detail:_resultDic[@"summary"] cornerStyle:[self getCornerStyleWithTitle:_titleArray[indexPath.row]]];
+            }
         }
         return cell;
     }
-    
 }
 
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    DoctorDetailShowViewController *doctorDetail = [[DoctorDetailShowViewController alloc]init];
+//    doctorDetail.doctorID = _resultDic[@"doctor"][@"id"];
+//    [self.navigationController pushViewController:doctorDetail animated:YES];
+//    
+//}
+
+/*==============*/
+- (void)showDoctorDetailVC:(NSNumber *)doctorId {
+    
+    DoctorDetailShowViewController *doctorDetail = [[DoctorDetailShowViewController alloc]init];
+    doctorDetail.doctorID = doctorId;
+    doctorDetail.automaticallyAdjustsScrollViewInsets = NO;
+    doctorDetail.edgesForExtendedLayout = UIRectEdgeTop;
+    doctorDetail.extendedLayoutIncludesOpaqueBars = YES;
+    [self.navigationController pushViewController:doctorDetail animated:YES];
+    
+}
+/*==============*/
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

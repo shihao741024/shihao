@@ -14,6 +14,9 @@
 #import "SalesStatisticsBll.h"
 #import "ProductionsViewController.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+#import "ContactssViewController.h"
+
 #import "CommonBll.h"
 #import "DistriModel.h"
 #import "DistriTableView.h"
@@ -151,13 +154,16 @@
                 if ((_salesStatisticsType == 0 )||(_salesStatisticsType == 2)) {
                     TaskEditTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                     cell.detailLabel.text = _salesStatisticsModel.pillName;
+                    cell.detailLabel.textColor = COMMON_FONT_BLACK_COLOR;
                     
                     if (_salesStatisticsType == 2 ){
                         TaskEditTableViewCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                         cell2.detailLabel.text = [NSString stringWithFormat:@"%@ / %@",_salesStatisticsModel.name,_salesStatisticsModel.hospitalName];;
+                        cell2.detailLabel.textColor = COMMON_FONT_BLACK_COLOR;
                     }else{
                         TaskEditTableViewCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                         cell2.detailLabel.text = _salesStatisticsModel.hospitalName;
+                        cell2.detailLabel.textColor = COMMON_FONT_BLACK_COLOR;
                     }
                    
                     
@@ -272,8 +278,6 @@
                 }else {
                     cell.detailLabel.text = @"请选择医生";
                 }
-                
-                
             }
             if (indexPath.item == 3) {
                 [cell addSubview:_costField];
@@ -284,11 +288,11 @@
                 _titleField.frame = CGRectMake(100, 0, SCREEN_WIDTH - 160, 50);
                 [cell addSubview:_titleField];
                 _titleField.delegate = self;
-                UIButton *chooseButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,10, 55, 30)];
+                UIButton *chooseButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 55, 13, 50, 24)];
                 [chooseButton setTitle:@"选择" forState:UIControlStateNormal];
                 [chooseButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
                 chooseButton.backgroundColor = COMMON_BLUE_COLOR;
-                chooseButton.layer.cornerRadius = 15;
+                chooseButton.layer.cornerRadius = 12;
                 chooseButton.clipsToBounds = YES;
                 [chooseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [cell addSubview:chooseButton];
@@ -303,6 +307,7 @@
             }
             if (indexPath.item == 1) {
                 cell.detailLabel.text = @"请选择医生";
+                
             }
             if (indexPath.item == 2) {
                 [cell addSubview:_costField];
@@ -312,6 +317,7 @@
     }
         cell.backgroundColor = [UIColor whiteColor];
         cell.nameLabel.text = _dataArray[indexPath.item];
+//        cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -345,6 +351,7 @@
                         
                         TaskEditTableViewCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                         cell2.detailLabel.text = @"请选择医院";
+                        cell2.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
                     };
                    
                 }else{
@@ -368,7 +375,7 @@
             case 1:{
                 //当药品已经选择了 才能选择医院
                 if (_productionModel.productID) {
-                    ContactViewController *contactVC = [[ContactViewController alloc]init];
+                    ContactssViewController *contactVC = [[ContactssViewController alloc]init];
                     contactVC.type = 1;
                     contactVC.productModel = _productionModel;
                     [self.navigationController pushViewController:contactVC animated:YES];
@@ -380,7 +387,7 @@
                 }
                 //当药品没有选择 但处于编辑状态下
                 else if (_salesStatisticsModel.productionID){
-                    ContactViewController *contactVC = [[ContactViewController alloc]init];
+                    ContactssViewController *contactVC = [[ContactssViewController alloc]init];
                     contactVC.type = 1;
                     _productionModel = [[ProductionModel alloc]init];
                     _productionModel.productID = _salesStatisticsModel.productionID;
@@ -441,6 +448,7 @@
                     
                     TaskEditTableViewCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                     cell2.detailLabel.text = @"请选择医生";
+                    cell2.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
                 };
                    
                 }else{
@@ -462,7 +470,7 @@
             case 1:{
                 //当药品已经选择了 先进入医院 最后跳到医生
                 if (_productionModel.productID) {
-                    ContactViewController *contactVC = [[ContactViewController alloc]init];
+                    ContactssViewController *contactVC = [[ContactssViewController alloc]init];
                     contactVC.type = 2;
                     if (self.navigationController.viewControllers.count == 5) {
                         contactVC.popIndex = 4;
@@ -472,9 +480,11 @@
                     [self.navigationController pushViewController:contactVC animated:YES];
                    
                 }
-                //当药品没有选择 但处于编辑状态下
+                
+                
+                //当药品没有选择 但处于编辑状态下/*===========*/
                 else if (_salesStatisticsModel.productionID){
-                    ContactViewController *contactVC = [[ContactViewController alloc]init];
+                    ContactssViewController *contactVC = [[ContactssViewController alloc]init];
                     contactVC.type = 2;
                     if (self.navigationController.viewControllers.count == 5) {
                         contactVC.popIndex = 4;
@@ -531,7 +541,7 @@
             }break;
             case 1:{
 //                进入医院 在进入医生
-                ContactViewController *contactVC = [[ContactViewController alloc]init];
+                ContactssViewController *contactVC = [[ContactssViewController alloc]init];
                 contactVC.type = 5;
                 
                 if (self.navigationController.viewControllers.count == 5) {
@@ -708,7 +718,7 @@
     if (_salesStatisticsType == 0) {
         if (((_productionModel == nil)&&(_salesStatisticsModel == nil))||
             ((_contactModel == nil)&&(_salesStatisticsModel.hospitalID == nil))
-            ||([[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] detailLabel] text] == nil)
+            ||([[[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] detailLabel] text] isEqualToString:@""])
             ||[_costField.text isEqualToString:@""]) {
             
             [Dialog simpleToast:@"相关信息未完善"];
@@ -771,7 +781,7 @@
     }else if (_salesStatisticsType == 1){
         if (((_productionModel == nil)&&(_salesStatisticsModel == nil))||
             ((_contactModel == nil)&&(_salesStatisticsModel.hospitalID == nil))||
-            ([[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] detailLabel] text] == nil)||
+            ([[[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] detailLabel] text] isEqualToString:@""])||
             [_costField.text isEqualToString:@""]) {
             [Dialog simpleToast:@"相关信息未完善"];
         }else{
@@ -841,7 +851,7 @@
     }else{
         if (((_productionModel == nil)&&(_salesStatisticsModel == nil))||
             ((_contactModel == nil)&&(_salesStatisticsModel.hospitalID == nil))
-            ||([[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] detailLabel] text] == nil)
+            ||([[[[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] detailLabel] text] isEqualToString:@""])
             ||[_costField.text isEqualToString:@""]) {
             [Dialog simpleToast:@"相关信息未完善"];
         }else{

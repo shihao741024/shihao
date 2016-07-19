@@ -83,6 +83,7 @@
 //        NSLog(@"%@",str);
         TaskDetailModel *model = [[TaskDetailModel alloc]initWithDic:responseObject];
         result(model);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
         NSLog(@"%@",error.description);
         [viewCtrl hideHud];

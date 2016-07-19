@@ -18,6 +18,7 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
 
 @interface HomeViewController ()<SDHomeGridViewDeleate,AMapLocationManagerDelegate,AMapSearchDelegate>
 
@@ -29,6 +30,21 @@
 @end
 
 @implementation HomeViewController
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
@@ -66,6 +82,9 @@
         _dataArray=[NSMutableArray arrayWithArray:arr];
         _mainView.gridModelsArray = _dataArray;
     }];
+    more.automaticallyAdjustsScrollViewInsets = NO;
+    more.edgesForExtendedLayout = UIRectEdgeTop;
+    more.extendedLayoutIncludesOpaqueBars = YES;
     [self.navigationController pushViewController:more animated:YES];
 
 }
@@ -137,11 +156,9 @@
     if ([user objectForKey:@"homeItems"]) {
         idStr= [user objectForKey:@"homeItems"];
     }else{
-        idStr = @"1,2,3,4,5,6,7,8,9,10";
+        idStr = @"1,2,3,4,5,6,7,8,9,10,11";
         [user setObject:idStr forKey:@"homeItems"];
     }
-  
-
     
     _dataArray=[ErrandItemBll getMyItem:idStr allItem:totalArr];
      [self setupMainView];
@@ -180,8 +197,8 @@
         UIStoryboard *main=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
             
         UIViewController *view=[main instantiateViewControllerWithIdentifier:model.toClassSeg];
-            if ([view isKindOfClass:[ContactViewController class]]) {
-                ContactViewController *vc = (ContactViewController *)view;
+            if ([view isKindOfClass:[ContactsViewController class]]) {
+                ContactsViewController *vc = (ContactsViewController *)view;
                 vc.phonebook = YES;
             }
         [self.navigationController pushViewController:view animated:true];
@@ -283,6 +300,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation

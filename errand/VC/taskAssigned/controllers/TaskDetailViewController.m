@@ -8,9 +8,14 @@
 
 #import "TaskDetailViewController.h"
 #import "TaskBll.h"
-#import "MMAlertView.h"
 #import "MMPopupView.h"
-@interface TaskDetailViewController ()
+#import "RejectDeclareReportView.h"
+#import "CompleteReportView.h"
+
+@interface TaskDetailViewController (){
+    RejectDeclareReportView *_reportV;
+    CompleteReportView *_reportView;
+}
 @end
 
 @implementation TaskDetailViewController{
@@ -31,7 +36,6 @@
     topHeight = 20;
     [self initData];
    
-    // Do any additional setup after loading the view.
 }
 
 - (void)navigationItemClicked:(UIButton *)barButtonItem
@@ -46,10 +50,16 @@
     [self showHintInView:self.view];
     TaskBll *taskBll = [[TaskBll alloc]init];
     [taskBll getDetailTaskData:^(TaskDetailModel *model) {
+        if (model.belongId == self.getUserID) {
+            type = 0;
+        } else {
+            type = 1;
+        }
         _taskModel = model;
         [self createMainView];
         [self createBottomView];
         [self hideHud];
+        
     } taskID:_taskID viewCtrl:self];
 }
 - (void)createMainView{
@@ -67,8 +77,6 @@
 - (void)createBottomView{
     
 //    0 待接收 1 已接受 99已完成 3拒绝  -1 过期 -2取消
-    
-    
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - bottomHeight-topHeight, SCREEN_WIDTH, bottomHeight+topHeight)];
     bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:bottomView];
@@ -194,23 +202,27 @@
             }];
         } taskID:_taskID dealType:2 feedback:nil viewCtrl:self];
     }else{
-        MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"请输入驳回理由" detail:@"" placeholder:@"" handler:^(NSString *text) {
-            if (text.length != 0) {
+        if (_reportV == NULL) {
+            _reportV = [[RejectDeclareReportView alloc] initWithFrame:self.view.bounds];
+            [self.view addSubview:_reportV];
+        }
+        _reportV.hidden = NO;
+        
+        [_reportV buttonClickAction:^(NSInteger index) {
+            if (index == 1) {
                 [self showHintInView:self.view];
-                [alterView show];
                 [taskBll dealTaskData:^(int result) {
-                    [Dialog simpleToast:@"驳回成功"];
+                    [Dialog simpleToast:@"拒绝成功"];
                     self.changeStatusBlock(self.indexPath,@"3");
                     [self.navigationController popViewControllerAnimated:YES];
                     [self.navigationController dismissViewControllerAnimated:YES completion:^{
                         
                     }];
-                } taskID:_taskID dealType:1 feedback:text viewCtrl:self];
+                } taskID:_taskID dealType:1 feedback:_reportV.textView.text viewCtrl:self];
             }
         }];
-        
-        [alterView show];
     }
+    
     
 }
 
@@ -242,29 +254,27 @@
     
 }
 
-- (void)completeBtnClick{
+- (void)completeBtnClick {
     TaskBll *taskBll = [[TaskBll alloc]init];
-    __block MMAlertView *view;
-    MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"备注" detail:@"" placeholder:@"" handler:^(NSString *text) {
-        
-        
-        [view hide];
-        [self showHintInView:self.view];
-        [taskBll dealTaskData:^(int result) {
-            self.changeStatusBlock(self.indexPath,@"99");
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                
-            }];
-            [Dialog simpleToast:@"完成任务"];
-            
-            [alterView hide];
-            
-        } taskID:_taskID dealType:3 feedback:text viewCtrl:self];
-        
+    if (_reportView == NULL) {
+        _reportView = [[CompleteReportView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_reportView];
+    }
+    _reportView.hidden = NO;
+    
+    [_reportView buttonClickAction:^(NSInteger index) {
+        if (index == 1) {
+            [self showHintInView:self.view];
+            [taskBll dealTaskData:^(int result) {
+                self.changeStatusBlock(self.indexPath,@"99");
+                [self.navigationController popViewControllerAnimated:YES];
+                [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                }];
+                [Dialog simpleToast:@"完成任务"];
+            } taskID:_taskID dealType:3 feedback:_reportView.textView.text viewCtrl:self];
+        }
     }];
-    view = alterView;
-    [alterView show];
+
 }
 
 -(UILabel *)createLabelWithFont:(float)size andTextColor:(UIColor *)color andTextAlignment:(NSTextAlignment )alignment andText:(NSString *)text{
@@ -281,14 +291,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -183,7 +183,7 @@
                     [UIView animateWithDuration:0.5 animations:^{
                         view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y -[MyAdapter aDapterView:68] , SCREEN_WIDTH, view.frame.size.height);
                         
-                    }];
+                    }]; 
                 });
             }
             //             NSLog(@"%f",view.frame.origin.y);
@@ -197,8 +197,6 @@
         [view setMyRecordModelToView:_dataArray[0]];
         _attendanceBtn.userInteractionEnabled = YES;
     }
-    
-    
 }
 //开辟线程先把头部的几个view创建好，之后刷新数据
 - (void)createHeaderView{

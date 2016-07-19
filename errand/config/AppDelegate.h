@@ -28,6 +28,7 @@
 @property (strong, nonatomic) AMapSearchAPI *search;
 @property (strong, nonatomic) RDVTabBarController *tabBarController;
 @property (strong, nonatomic) NSDictionary *pushUserInfo;
+@property (assign, nonatomic) NSInteger allowRotation;
 //重启定位服务
 - (void)reStartRunLocationProcess;
 

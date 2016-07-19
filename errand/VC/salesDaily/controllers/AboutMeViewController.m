@@ -17,6 +17,7 @@
 #import "StaffModel.h"
 #import "Node.h"
 #import "CustomerVisitDetailViewController.h"
+#import "VisitRecordDetailViewController.h"
 
 @interface AboutMeViewController ()<SRRefreshDelegate ,UITableViewDataSource,UITableViewDelegate,HPGrowingTextViewDelegate>{
     NSMutableArray *dataArray;
@@ -261,7 +262,7 @@
 }
 - (void)showVisitDetailCtrl:(NSString *)idStr
 {
-    CustomerVisitDetailViewController *viewCtrl = [[CustomerVisitDetailViewController alloc] init];
+    VisitRecordDetailViewController *viewCtrl = [[VisitRecordDetailViewController alloc] init];
     viewCtrl.visitID = [NSNumber numberWithInteger:[idStr integerValue]];
     viewCtrl.automaticallyAdjustsScrollViewInsets = NO;
     viewCtrl.edgesForExtendedLayout = UIRectEdgeTop;

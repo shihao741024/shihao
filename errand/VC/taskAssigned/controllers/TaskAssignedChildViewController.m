@@ -10,7 +10,8 @@
 #import "TaskTableViewCell.h"
 #import "TaskBll.h"
 #import "TaskDetailViewController.h"
-@interface TaskAssignedChildViewController ()<SRRefreshDelegate ,UITableViewDataSource,UITableViewDelegate>@property(nonatomic,strong)UITableView *tableView;
+@interface TaskAssignedChildViewController ()<SRRefreshDelegate ,UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)SRRefreshView *slimeView;
 
 @end
@@ -120,7 +121,7 @@
     self.view.backgroundColor=COMMON_BACK_COLOR;
     _tableView.backgroundColor=COMMON_BACK_COLOR;
     _tableView.showsVerticalScrollIndicator = NO;
-    self.automaticallyAdjustsScrollViewInsets =NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self createSlime];
     [self initData];

@@ -12,4 +12,6 @@
 
 - (void)fillData:(NSDictionary *)dic cornerStyle:(CornerStyle)cornerStyle;
 
+@property (nonatomic, copy) void (^doctorNameLableClick)(NSNumber *doctorId);
+
 @end

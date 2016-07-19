@@ -12,6 +12,9 @@
 #import "TaskDetailViewController.h"
 #import "MissionDetailViewController.h"
 #import "CustomerVisitDetailViewController.h"
+#import "ReportDetailVC.h"
+#import "DoctorDetailShowViewController.h"
+#import "WebViewController.h"
 
 @implementation AppDelegate (UMSDK)
 
@@ -100,7 +103,7 @@
     NSLog(@"fetchCompletionHandler = %@", userInfo);
     self.pushUserInfo = userInfo;
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive||[UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
         [alert show];
@@ -112,9 +115,13 @@
         }
         
         NSLog(@"UIApplicationStateInactive");
-    }else if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
-        NSLog(@"UIApplicationStateBackground");
+    }else {
+    
+        
     }
+//    else if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
+//        NSLog(@"UIApplicationStateBackground");
+//    }
     
     if([UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -178,6 +185,23 @@
             
         }];
     }
+    if ([userInfo[@"type"] isEqualToString:@"report"]){//微博日报
+        
+        ReportDetailVC *viewCtrl = [[ReportDetailVC alloc]init];
+        viewCtrl.reportID = userInfo[@"id"];
+        [self messagePushPresentViewCtrl:viewCtrl];
+        
+    }
+    if ([userInfo[@"type"] isEqualToString:@"doctor"]) {//医生详情
+        DoctorDetailShowViewController *viewCtrl = [[DoctorDetailShowViewController alloc]init];
+        viewCtrl.doctorID = userInfo[@"id"];
+        [self messagePushPresentViewCtrl:viewCtrl];
+    }
+    if ([userInfo[@"type"] isEqualToString:@"link"]) {//link
+        WebViewController *viewCtrl = [[WebViewController alloc]init];
+        viewCtrl.url = userInfo[@"id"];
+        [self messagePushPresentViewCtrl:viewCtrl];
+    }
     
 }
 
@@ -186,6 +210,7 @@
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:viewCtrl];
     if (self.tabBarController.presentedViewController) {
         [self.tabBarController dismissViewControllerAnimated:NO completion:^{
+            
             [self.tabBarController presentViewController:navi animated:YES completion:^{
                 
             }];

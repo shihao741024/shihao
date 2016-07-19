@@ -21,11 +21,27 @@
 
 @implementation AppDelegate
 
-
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    
+    if (_allowRotation == 1) {
+        return UIInterfaceOrientationMaskAll;
+    }else{
+        return UIInterfaceOrientationMaskPortrait;
+    }
+}
+- (BOOL)shouldAutorotate{
+    
+    if (_allowRotation == 1) {
+        return YES;
+    }
+    return NO;
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"didFinishLaunchingWithOptions, %@", launchOptions);
 //  [NSThread sleepForTimeInterval:1];
+    
     
     UIWindow *window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     window.backgroundColor = [UIColor colorWithRed:0.322 green:0.710 blue:0.996 alpha:1.000];

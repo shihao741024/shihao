@@ -38,13 +38,15 @@
 
 //开发环境
 #define BASEURL     @"http://hcroad.hicp.net:8888"
+//磊
+//#define BASEURL     @"http://192.168.0.105:8080"
+//老板
 //#define BASEURL     @"http://192.168.0.101:8080"
-
 
 //生产环境
 //#define BASEURL       @"http://120.76.167.95"
 
-#define BASEUPLOAD    @"http://120.26.124.121:8088"
+//#define BASEUPLOAD    @"http://120.26.124.121:8088"
 
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)

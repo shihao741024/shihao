@@ -11,8 +11,13 @@
 #import <AMapSearchKit/AMapSearchKit.h>
 #import "MMAlertView.h"
 #import <AMapLocationKit/AMapLocationKit.h>
+#import "MissVisitReportView.h"
+#import "SummaryReportView.h"
 
-@interface CustomerVisitDetailViewController ()<AMapLocationManagerDelegate, AMapSearchDelegate>
+@interface CustomerVisitDetailViewController ()<AMapLocationManagerDelegate, AMapSearchDelegate>{
+    MissVisitReportView *_reportV;
+    SummaryReportView *_reportView;
+}
 @property (nonatomic, strong)UIImageView *statusImgView;
 @property (nonatomic ,strong)UILabel *startDateLbl;
 @property (nonatomic, strong)UILabel *staffLabel;
@@ -56,15 +61,11 @@
     self.title = NSLocalizedString(@"customerVisitDetail", @"customerVisitDetail");
     [self addBackButton];
     
-    
-
-
     self.view.backgroundColor = COMMON_BACK_COLOR;
     self.automaticallyAdjustsScrollViewInsets = NO;
     bottomHeight = [MyAdapter aDapter:80];
     [self createMainView];
     [self createData];
-    
     
     // Do any additional setup after loading the view.
 }
@@ -137,20 +138,33 @@
 {
     _isMissVisit = YES;
     
-    MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"失访原因" detail:@"" placeholder:@"" handler:^(NSString *text) {
-        if (text.length!=0) {
+//    MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"失访原因" detail:@"" placeholder:@"" handler:^(NSString *text) {
+//        if (text.length!=0) {
+//            [self showHintInView:self.view];
+//            _message = text;
+//            [self getCurrentAddressName];
+//            
+//        }else{
+////            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"失访原因不能为空" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+////            [alertView show];
+//            [Dialog simpleToast:@"失访原因不能为空"];
+//        }
+//    }];
+//    [alterView show];
+    
+    if (_reportV == NULL) {
+        _reportV = [[MissVisitReportView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_reportV];
+    }
+    _reportV.hidden = NO;
+    
+    [_reportV buttonClickAction:^(NSInteger index) {
+        if (index == 1) {
             [self showHintInView:self.view];
-            _message = text;
+            _message = _reportV.textView.text;
             [self getCurrentAddressName];
-            
-        }else{
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"失访原因不能为空" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alertView show];
-            [Dialog simpleToast:@"失访原因不能为空"];
         }
     }];
-    [alterView show];
-    
 }
 
 - (void)handleMissVisitRequest:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
@@ -302,7 +316,7 @@
         _startDateLbl.textColor = kOrangeColor;
     }
     _staffLabel.text = @"我";
-    _planLabel.text = @"计划与";
+    _planLabel.text = @"计划于";
     _endDateLabel.text = model.endDate;
     _visitLabel.text = @"拜访客户";
     _doctorLabel.text = model.doctorName;
@@ -559,18 +573,33 @@
 #pragma mark --- 离开签到
 -(void)rightButtonClick{
     _isMissVisit = NO;
-       MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"拜访总结" detail:@"" placeholder:@"" handler:^(NSString *text) {
-        if (text.length!=0) {
+//       MMAlertView *alterView = [[MMAlertView alloc]initWithInputTitle:@"拜访总结" detail:@"" placeholder:@"" handler:^(NSString *text) {
+//        if (text.length!=0) {
+////            [self showHintInView:self.view];
+//            category = 1;
+//            [self getCurrentAddressName];
+//            _message = text;
+//        }else{
+//            [Dialog simpleToast:@"拜访总结不能为空"];
+//        }
+//    }];
+//    [alterView show];
+    
+    if (_reportView == NULL) {
+        _reportView = [[SummaryReportView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:_reportView];
+    }
+    _reportView.hidden = NO;
+    
+    [_reportView buttonClickAction:^(NSInteger index) {
+        if (index == 1) {
 //            [self showHintInView:self.view];
             category = 1;
             [self getCurrentAddressName];
-            _message = text;
-        }else{
-            [Dialog simpleToast:@"拜访总结不能为空"];
+            _message = _reportView.textView.text;
+            
         }
     }];
-    [alterView show];
-    
 }
 
 //创建主视图
@@ -618,10 +647,6 @@
         make.left.equalTo(_statusImgView.mas_right).offset(10);
         make.height.equalTo(@16);
     }];
-    
-    
-    
-    
     
     [_staffLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_statusImgView.mas_bottom).offset(20);
@@ -897,82 +922,7 @@
             }
         }
     }
-        /*
-        CustomerVisitBll *visitBll = [[CustomerVisitBll alloc]init];
-        [visitBll addSigninData:^(NSDictionary *result) {
-            [self hideHud];
-            //1 离开签到
-            if (category == 1) {
-                //取消定时器
-//                [_clockTimer invalidate];
-//                //改变状态的图片
-//                self.statusImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"visitStatus%@",@2]];
-//                
-//                //改变离开签到的button的标题
-//                NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-//                [dateFormatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//                NSDate *leaveDate = [dateFormatter1 dateFromString:result[@"leaveDate"] ];
-//                long dt=[leaveDate  timeIntervalSince1970];
-//                NSString *leaveDateStr1 = [result[@"leaveDate"] substringWithRange:NSMakeRange(11, 5)];
-//               
-//                _leaveButton = [self createButtonWithView:_bottomView andWithText1:leaveDateStr1 andWithText2:@"已签到" andWithDirectType:1];
-//                _leaveButton.backgroundColor = [UIColor colorWithRed:0.757 green:0.757 blue:0.761 alpha:1.000];
-//
-//                long value = (long)(dt - [self.visitDetailModel.arriveDate doubleValue]/1000);
-//                int msperhour = 3600;
-//                int mspermin = 60;
-//                int hrs =  value / msperhour;
-//                int mins = (value % msperhour) / mspermin;
-//                int secs = (value % msperhour) % mspermin;
-//                if (hrs == 0) {
-//                    if (mins == 0) {
-//                        _timeLabel.text = [NSString stringWithFormat:@"00:00:%02d", secs];
-//                    } else {
-//                        _timeLabel.text = [NSString stringWithFormat:@"00:%02d:%02d", mins, secs];
-//                    }
-//                } else {
-//                    _timeLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hrs, mins, secs];
-//                }
-//                
-//                _leaveButton.userInteractionEnabled = NO;
-                
-                [Dialog simpleToast:@"离开签到成功"];
-                self.changeVisitStatusBlock(_indexPath,@"2");
-                [self leaveClickChangeButton];
-//                [self.navigationController popViewControllerAnimated:YES];
-                
-            }else{
-                
-//                [self.navigationController popViewControllerAnimated:YES];
-                
-                
-//                self.statusImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"visitStatus%@",@1]];
-//                
-//                NSString *arriveDateStr1 = [result[@"arriveDate"] substringWithRange:NSMakeRange(11, 5)];
-//                
-//                _arriveBtn = [self createButtonWithView:_bottomView andWithText1:arriveDateStr1 andWithText2:@"已签到" andWithDirectType:0];
-//                _arriveBtn.backgroundColor = [UIColor colorWithRed:0.757 green:0.757 blue:0.761 alpha:1.000];
-//                
-//             
-//                _arriveBtn.userInteractionEnabled = NO;
-//                [_leaveButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
-//                //定时器
-//                _clockTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(arriveclockDidTick) userInfo:nil repeats:YES];
-//                //加入主循环池中
-//                [[NSRunLoop currentRunLoop]addTimer:_clockTimer forMode:NSDefaultRunLoopMode];
-//                //开始循环
-//                [_clockTimer fire];
-                
-                [Dialog simpleToast:@"到达签到成功"];
-                self.changeVisitStatusBlock(_indexPath,@"1");
-                [self arriveClickChangeButton];
-                _arriveTimerFire = YES;
-            }
-            
-        } category:category visitID:self.visitID longitude:[NSString stringWithFormat:@"%f",request.location.longitude] latitude:[NSString stringWithFormat:@"%f",request.location.latitude] name:resultAddress Message:_message viewCtrl:self];
         
-    }
-         */
 }
 
 - (void)arriveClickChangeButton

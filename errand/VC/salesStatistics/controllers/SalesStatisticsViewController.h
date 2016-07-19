@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HuDongSegmentedViewController.h"
-@interface SalesStatisticsViewController : HuDongSegmentedViewController
+//#import "HuDongSegmentedViewController.h"
+#import "MySegmentViewController.h"
+
+@interface SalesStatisticsViewController : MySegmentViewController
 
 @end

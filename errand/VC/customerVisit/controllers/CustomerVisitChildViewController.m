@@ -260,8 +260,7 @@
     [_tableView addSubview:_slimeView];
 }
 //行高
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 150;
 }
 //行数
@@ -269,7 +268,7 @@
     return  dataArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellTableIdentifier = @"cell";
     TaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier];
     if (cell == nil) {
@@ -285,7 +284,7 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     return  cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomerVisitDetailViewController *customerVisitDetail = [[CustomerVisitDetailViewController alloc]init];
     customerVisitDetail.visitID = [dataArray[indexPath.row] visitID];
@@ -295,7 +294,6 @@
         CustomerVisitModel *model = dataArray[changeIndexPath.row];
         model.stateString = status;
         [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:changeIndexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
     };
     
     [customerVisitDetail setRefreshBeforeDataCB:^{
@@ -343,8 +341,10 @@
     }];
 }
 
-- (void)refreshData
-{
+- (void)refreshData {
+    
+    _visitDateStr = _dateStr;
+    
     pageIndex=1;
     [self initData];
 }

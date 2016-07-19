@@ -10,6 +10,9 @@
 #import "ProductionModel.h"
 #import "CommonBll.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+#import "ContactssViewController.h"
+
 #import "ProductionsTableViewCell.h"
 #import "BATableView.h"
 #import "pinyin.h"
@@ -320,17 +323,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //0 直接返回  1 跳到医院界面 返回  2 跳到医院界面 然后调到医生界面 返回  3 跳到医院界面 可以打勾 也可以跳到医生
     if (_type == 1) {
-        ContactViewController *contactVC = [[ContactViewController alloc]init];
+        ContactssViewController *contactVC = [[ContactssViewController alloc]init];
         contactVC.type = 3;
         contactVC.productModel = _showArray[indexPath.section][indexPath.row];
         [self.navigationController pushViewController:contactVC animated:YES];
     }else if (_type == 2){
-        ContactViewController *contactVC = [[ContactViewController alloc]init];
+        ContactssViewController *contactVC = [[ContactssViewController alloc]init];
         contactVC.type = 4;
         contactVC.productModel = _showArray[indexPath.section][indexPath.row];
         [self.navigationController pushViewController:contactVC animated:YES];
     }else if (_type == 3){
-        ContactViewController *contactVC = [[ContactViewController alloc]init];
+        ContactssViewController *contactVC = [[ContactssViewController alloc]init];
         contactVC.type = 6;
         contactVC.allProduct = _allProduct;
         contactVC.popIndex = _popIndex;

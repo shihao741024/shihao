@@ -465,7 +465,6 @@ numberOfRowsInComponent:(NSInteger)component{
         NSArray *secondArray = dic[[NSString stringWithFormat:@"name%@", stateCodeArray[i]]];
         // 第二层中地级城市名对应code
         NSArray *secondCodeArray = dic[[NSString stringWithFormat:@"code%@", stateCodeArray[i]] ];
-        
         // 遍历地级城市名
         for (int j = 0; j < secondArray.count; j++) {
             // 第二字典，用于存储地级市名以及地级市下辖县区数据
@@ -478,7 +477,6 @@ numberOfRowsInComponent:(NSInteger)component{
             if ([dic[name] count] > 0) {
                 [areasArray addObjectsFromArray:dic[name]];
             }
-            
             // 将下辖城市数组存入字典
             [cityDict setObject:areasArray forKey:@"areas"];
             // 将地级城市名存入字典
@@ -497,8 +495,6 @@ numberOfRowsInComponent:(NSInteger)component{
     //    NSLog(@"%lu",(unsigned long)rootArray.count);
     provinces = [[NSArray alloc] initWithArray:rootArray];
     cities = [[provinces objectAtIndex:0] objectForKey:@"cities"];
-    
-    
 }
 
 

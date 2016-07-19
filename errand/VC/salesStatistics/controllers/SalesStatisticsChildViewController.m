@@ -124,7 +124,7 @@
     navHeight=self.navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height;
     float bottomHeight=SEG_HEIGHT;
     if (_statisticsCountModel == nil){
-        _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-navHeight-bottomHeight+2)];
+        _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, navHeight, SCREEN_WIDTH, SCREEN_HEIGHT-navHeight-bottomHeight+2)];
     }else{
         _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     }
@@ -146,7 +146,7 @@
  *  建立汇总的按钮
  */
 - (void)createCountIcon{
-    AmotButton *countButton = [[AmotButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 20 - 60, SCREEN_HEIGHT - 49 - 64  - 60, 60, 60)];
+    AmotButton *countButton = [[AmotButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 20 - 60, SCREEN_HEIGHT - 64  - 60, 60, 60)];
     [countButton setImage:[UIImage imageNamed:@"toggle"] forState:UIControlStateNormal];
     [countButton setImage:[UIImage imageNamed:@"toggle"] forState:UIControlStateSelected];
     [self.view addSubview:countButton];

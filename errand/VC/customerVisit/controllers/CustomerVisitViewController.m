@@ -129,7 +129,8 @@
     
     CreateVisitInfoViewController *createVisitCtrl = [[CreateVisitInfoViewController alloc] init];
     [self.navigationController pushViewController:createVisitCtrl animated:YES];
-    [createVisitCtrl uploadFinishRefreshAction:^{
+    [createVisitCtrl uploadFinishRefreshAction:^(NSString *dateStr){
+        view.dateStr = dateStr;
         [view refreshData];
         [view1 refreshData];
     }];

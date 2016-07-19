@@ -12,7 +12,7 @@
 
 @property (nonatomic, retain) NSArray *dataArray;
 
-@property (nonatomic, assign) int salesStatisticsType;//0 销售上报  1 传销上报  2 竞品上报
+@property (nonatomic, assign) int salesStatisticsType;//0 购进上报  1 纯销上报  2 竞品上报
 
 @property (nonatomic, strong)SalesStatisticsModel *salesStatisticsModel;
 

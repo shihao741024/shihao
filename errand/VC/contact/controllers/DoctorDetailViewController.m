@@ -44,7 +44,7 @@ andDefaultDepartmentString:[NSString stringWithFormat:@"%@:", NSLocalizedString(
  andDefaultPositionString:[NSString stringWithFormat:@"%@:", NSLocalizedString(@"position", @"position")]
     andDefaultphoneString:[NSString stringWithFormat:@"%@:", NSLocalizedString(@"telephone", @"telephone")]
        andStaffNameString:self.doctorModel.doctorName
-      andDepartmentString:self.doctorModel.departmentString
+      andDepartmentString:self.doctorModel.office
         andPositionString:self.doctorModel.positionString
            andPhoneString:self.doctorModel.phoneString
        andViewType:kDoctorDetail];

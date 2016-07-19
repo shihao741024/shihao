@@ -25,7 +25,7 @@
 {
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 75, 44)];
     _titleLabel.font = [UIFont systemFontOfSize:15];
-    _titleLabel.textColor = COMMON_FONT_GRAY_COLOR;
+    _titleLabel.textColor = COMMON_FONT_BLACK_COLOR; //COMMON_FONT_GRAY_COLOR
     [self.contentView addSubview:_titleLabel];
     
     _textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 0, kWidth-105, 44)];

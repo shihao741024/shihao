@@ -102,9 +102,9 @@
     
     
     
-    _countArray = @[[NSString stringWithFormat:@"%ld", _falseArray.count],
-                    [NSString stringWithFormat:@"%ld", _incompleteArray.count],
-                    [NSString stringWithFormat:@"%ld", _trueArray.count]];
+    _countArray = @[[NSString stringWithFormat:@"%ld", (unsigned long)_falseArray.count],
+                    [NSString stringWithFormat:@"%ld", (unsigned long)_incompleteArray.count],
+                    [NSString stringWithFormat:@"%ld", (unsigned long)_trueArray.count]];
     [_bottomTableView reloadData];
     
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(pieChartViewReloadData) userInfo:nil repeats:NO];

@@ -162,7 +162,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VisitRecordDetailViewController *visitRecordDetailCtrl = [[VisitRecordDetailViewController alloc] init];
-    visitRecordDetailCtrl.visitDic = _dataArray[indexPath.row];
+    visitRecordDetailCtrl.visitID = _dataArray[indexPath.row][@"id"];
     [self.navigationController pushViewController:visitRecordDetailCtrl animated:YES];
     
 }

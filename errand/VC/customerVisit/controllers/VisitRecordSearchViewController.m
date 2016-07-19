@@ -12,6 +12,9 @@
 #import "ProductionsViewController.h"
 #import "SelectStaffViewController.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+#import "ContactssViewController.h"
+
 #import "MMChoiceOneView.h"
 #import "DoctorsViewController.h"
 
@@ -196,6 +199,7 @@
         cell.titleLabel.textAlignment = NSTextAlignmentRight;
     }
     cell.titleLabel.text = _titleArray[indexPath.row];
+    
 //    [cell fillContent:_fillInfoArray[indexPath.row] placeholder:_placeholderArray[indexPath.row]];
     [cell searchVisitRecordFillContent:_fillInfoArray[indexPath.row] placeholder:_placeholderArray[indexPath.row]];
     
@@ -324,7 +328,7 @@
 
 - (void)selectHospitalCtrl:(NSIndexPath *)indexPath
 {
-    ContactViewController *contactVC = [[ContactViewController alloc]init];
+    ContactssViewController *contactVC = [[ContactssViewController alloc]init];
     contactVC.type = 7;
     [self.navigationController pushViewController:contactVC animated:YES];
     
@@ -350,7 +354,7 @@
             [_tableView reloadData];
         }];
     }else {
-        ContactViewController *contactVC = [[ContactViewController alloc]init];
+        ContactssViewController *contactVC = [[ContactssViewController alloc]init];
         contactVC.type = 8;
         [self.navigationController pushViewController:contactVC animated:YES];
         

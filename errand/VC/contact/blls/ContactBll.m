@@ -178,7 +178,6 @@
     [manager GET:strUrl parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 //        NSString *str = [responseObject mj_JSONString];
 //        NSLog(@"%@",str);
-        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@",error.description);
         [viewCtrl hideHud];

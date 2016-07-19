@@ -16,6 +16,8 @@
 #import "DoctorsModel.h"
 #import "ProductionModel.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+#import "ContactssViewController.h"
 
 @interface SearchDeclareVC ()<UITableViewDelegate,UITableViewDataSource,MMDateViewDelegate,MMChoiceViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,WJJLabelDelegate,DeclareNameViewDelegate>
 
@@ -288,6 +290,7 @@
 
             }else{
                 cell.detailLabel.text = @"请选择医院或医生";
+                cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
             }
            
         }
@@ -321,6 +324,7 @@
 //        }
         if (indexPath.row == 2) {
             cell.detailLabel.text = @"请选择医院或医生";
+            cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
         }
         if (indexPath.row == 3) {
             [cell addSubview:_useWayField];
@@ -371,7 +375,7 @@
             
         }break;
         case 2:{
-            ContactViewController *productionsVC = [[ContactViewController alloc]init];
+            ContactssViewController *productionsVC = [[ContactssViewController alloc]init];
             productionsVC.type = 6;
             productionsVC.allProduct = YES;
             [self.navigationController pushViewController:productionsVC animated:YES];

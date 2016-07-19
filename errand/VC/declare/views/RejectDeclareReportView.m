@@ -47,12 +47,12 @@
     topLabel.backgroundColor = COMMON_BLUE_COLOR;
     topLabel.textAlignment = NSTextAlignmentCenter;
     topLabel.textColor = [UIColor whiteColor];
-    topLabel.text = @"请输入驳回理由";
+    topLabel.text = @"请输入拒绝理由";
     [_bgView addSubview:topLabel];
     
     _textView = [[UITextView alloc] initWithFrame:CGRectMake(15, 54, kWidth-50-30, 100)];
     _textView.delegate = self;
-    _textView.text = @"不同意";
+    _textView.text = @"";
     _textView.returnKeyType = UIReturnKeyDone;
     _textView.layer.borderWidth = 0.5;
     _textView.layer.borderColor = COMMON_FONT_BLACK_COLOR.CGColor;

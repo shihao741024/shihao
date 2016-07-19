@@ -41,6 +41,7 @@
     _contentTextView.editable = NO;
     _contentTextView.font = GDBFont(17);
     _contentTextView.textColor = COMMON_FONT_BLACK_COLOR;
+    _contentTextView.layoutManager.allowsNonContiguousLayout = NO;
     [self addSubview:_contentTextView];
     
     
@@ -123,8 +124,11 @@
         NSString *idStr = [afterStr substringToIndex:afterStr.length-1];
         _idStr = idStr;
         NSString *subStr = [model.content stringByReplacingOccurrencesOfString:visitStr withString:@""];
-        subStr = [subStr stringByAppendingString:@"查看详情拜访"];
-        
+        subStr = [subStr stringByAppendingString:@" 查看详情拜访"];
+//        NSRange range = [subStr rangeOfString:@"^(\\s*)\\n" options:NSRegularExpressionSearch];
+//        if (range.location != NSNotFound) {
+//            subStr = [subStr substringWithRange:range];
+//        }
         NSMutableAttributedString *contentAttributed = [[NSMutableAttributedString alloc] initWithString:subStr];
         NSRange detailRange = [subStr rangeOfString:@"查看详情拜访"];
         NSURL *url = [NSURL URLWithString:@"https://www.visitContentClick.com"];
@@ -252,7 +256,7 @@
     
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        CGSize size = [self sizeWithString:model.content font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
+    CGSize size = [self sizeWithString:model.content font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headImgView.mas_right).offset(10);
@@ -260,8 +264,9 @@
         make.width.equalTo(SCREEN_WIDTH - 85);
         make.height.equalTo(size.height+2);
     }];
-    
-    
+//    
+//    NSString *subStr = [model.content stringByAppendingString:@"\n查看详情拜访"];
+//    CGSize size0 = [self sizeWithString:subStr font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
     [_contentTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headImgView.mas_right).offset(6);
         make.top.equalTo(self.headImgView.mas_bottom).offset(-8);

@@ -31,6 +31,7 @@
         [user setObject:responseObject[@"token"] forKey:@"token"];
         [user setObject:responseObject[@"name"] forKey:@"name"];
         [user setObject:responseObject[@"id"] forKey:@"userID"];
+        [user setObject:responseObject[@"position"] forKey:@"position"];
         [user setObject:responseObject[@"telephone"] forKey:@"userName"];
         [user setObject:responseObject[@"organization"][@"id"] forKey:@"organizationID"];
         [user setObject:responseObject[@"organization"][@"name"] forKey:@"organizationName"];

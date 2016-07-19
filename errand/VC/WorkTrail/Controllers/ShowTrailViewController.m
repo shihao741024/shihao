@@ -25,8 +25,10 @@
     
     //在地图底图标注和兴趣点图标之上绘制overlay
     NSMutableArray *_overlaysAboveLabels;
+    NSMutableArray *_overlaysAboveRoads;
     
     NSMutableArray *_stopAnnotations; //停止标注数组
+    NSMutableArray *_allAnnotations;  //所有路径点数组
     NSMutableArray *_startEndAnnotations; //起点终点数组
     NSMutableArray *_freeSignAnnotations; //自由打卡数组
     NSMutableArray *_customerAnnotations; //客户拜访数组
@@ -49,6 +51,7 @@
     [self dataConfig];
     [self uiConfig];
     [self prepareData];
+    
 }
 //初始化数组
 - (void)dataConfig
@@ -56,6 +59,8 @@
     _dayIndex = 0;
     _overlaysAboveLabels = [NSMutableArray array];
     _stopAnnotations = [NSMutableArray array];
+    
+    _allAnnotations = [NSMutableArray array];
     
     _startEndAnnotations = [NSMutableArray array];
     _freeSignAnnotations = [NSMutableArray array];
@@ -155,6 +160,8 @@
     [_mapView removeAnnotations:_stopAnnotations];
     [_mapView removeAnnotations:_startEndAnnotations];
     
+    [_mapView removeAnnotations:_allAnnotations];
+    
     [_mapView removeAnnotations:_freeSignAnnotations];
     [_mapView removeAnnotations:_customerAnnotations];
 }
@@ -184,7 +191,7 @@
    
 }
 
-//自由打开的数组配置
+//自由打卡的数组配置
 - (void)freeSignCustomVisit:(id)responseObject
 {
     NSArray *freeSign = [NSArray arrayWithArray:responseObject[@"coordinate"]];
@@ -281,7 +288,7 @@
     }
     
     [_mapView addAnnotations:_stopAnnotations];
-    [_mapView showAnnotations:_stopAnnotations edgePadding:UIEdgeInsetsZero animated:NO];
+//    [_mapView showAnnotations:_stopAnnotations edgePadding:UIEdgeInsetsZero animated:YES];
     
 }
 
@@ -294,10 +301,10 @@
         if (dic[@"coordinate"] == [NSNull null]) {
             [path removeObject:dic];
         }
+        
     }
     
     if (path.count == 0) {
-        
         return;
     }
     
@@ -305,8 +312,18 @@
     NSMutableArray *handlePath = [NSMutableArray array];
     [handlePath addObject:path[0]];
     
+//    [_allAnnotations removeAllObjects];
     for (NSInteger i=0; i<path.count; i++) {
         NSDictionary *firstDic = path[i];
+        CustomPointAnnotation *annotation = [[CustomPointAnnotation alloc] init];
+        CLLocationDegrees lat = [WorkTrailFunction getLatWithDic:firstDic];
+        CLLocationDegrees lon = [WorkTrailFunction getLonWithDic:firstDic];
+        annotation.coordinate = CLLocationCoordinate2DMake(lat,lon);
+        [_allAnnotations addObject:annotation];
+        [_mapView addAnnotations:_allAnnotations];
+        [_mapView showAnnotations:_allAnnotations edgePadding:UIEdgeInsetsMake(80, 20, 80, 20) animated:NO];
+        
+        
         if (i+1 < path.count) {
             NSDictionary *secondDic = path[i+1];
             
@@ -356,10 +373,11 @@
             annotation.type = @"终";
         }
         [_startEndAnnotations addObject:annotation];
+        
     }
     
     [_mapView addAnnotations:_startEndAnnotations];
-    [_mapView showAnnotations:_startEndAnnotations edgePadding:UIEdgeInsetsZero animated:NO];
+//    [_mapView showAnnotations:_startEndAnnotations edgePadding:UIEdgeInsetsZero animated:YES];
 }
 
 //路线图
@@ -517,6 +535,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+    
+    [_mapView addAnnotations:_allAnnotations];
+    [_mapView showAnnotations:_allAnnotations edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _mapView.showsUserLocation = NO;
+    _mapView.userTrackingMode = MAUserTrackingModeNone;
+    [_mapView.layer removeAllAnimations];
+    _mapView.delegate = nil;
+    [_mapView removeAnnotations:_mapView.annotations];
+    [_mapView removeOverlays:_overlaysAboveLabels];
+    [_mapView removeFromSuperview];
+    _mapView = nil;
+    
+}
 /*
  #pragma mark - Navigation
  

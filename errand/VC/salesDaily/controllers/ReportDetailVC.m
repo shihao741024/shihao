@@ -18,6 +18,7 @@
 #import "StaffModel.h"
 #import "Node.h"
 #import "CustomerVisitDetailViewController.h"
+#import "VisitRecordDetailViewController.h"
 
 @interface ReportDetailVC ()<SRRefreshDelegate ,UITableViewDataSource,UITableViewDelegate,HPGrowingTextViewDelegate>
 
@@ -70,14 +71,24 @@
     self.view.backgroundColor = COMMON_BACK_COLOR;
     self.title = NSLocalizedString(@"reportDetail", @"reportDetail");
     [self addBackButton];
+    
     [self createView];
     // Do any additional setup after loading the view.
 }
+
+- (void)navigationItemClicked:(UIButton *)barButtonItem
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 //创建UI
 - (void)createView{
     _departmentSelectArray = [[NSMutableArray alloc]init];
     _staffSelectArray = [[NSMutableArray alloc]init];
-    _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
+    _tableView=[[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
     [self.view addSubview:_tableView];
     _tableView.delegate=self;
     _tableView.dataSource=self;
@@ -186,7 +197,7 @@
 }
 - (void)showVisitDetailCtrl:(NSString *)idStr
 {
-    CustomerVisitDetailViewController *viewCtrl = [[CustomerVisitDetailViewController alloc] init];
+    VisitRecordDetailViewController *viewCtrl = [[VisitRecordDetailViewController alloc] init];
     viewCtrl.visitID = [NSNumber numberWithInteger:[idStr integerValue]];
     viewCtrl.automaticallyAdjustsScrollViewInsets = NO;
     viewCtrl.edgesForExtendedLayout = UIRectEdgeTop;

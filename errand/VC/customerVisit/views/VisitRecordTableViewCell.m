@@ -16,12 +16,13 @@
     
     UILabel *_nameLabel;
     UILabel *_visitTypeLabel;
-    UILabel *_visitPeople;
     
+    UILabel *_visitPeople;
     UILabel *_carryPeople;
+    
     UILabel *_visitConclusion;
     UILabel *_conclusionText;
-    
+        
     UIView *_lineView;
 }
 
@@ -62,7 +63,7 @@
     [_bgView addSubview:_lineView];
     
     _visitConclusion = [_bgView createGeneralLabel:15 frame:CGRectMake(kFrameX(_carryPeople), kFrameY(_lineView)+kFrameH(_lineView)+10, kFrameW(_bgView)-30, 17) textColor:COMMON_FONT_GRAY_COLOR];
-    _visitConclusion.text = @"拜访总结";
+//    _visitConclusion.text = @"拜访总结";
     
     _conclusionText = [_bgView createGeneralLabel:15 frame:CGRectMake(kFrameX(_visitConclusion), kFrameY(_visitConclusion)+kFrameH(_visitConclusion)+10, kFrameW(_bgView)-30, 17) textColor:COMMON_FONT_BLACK_COLOR];
     _conclusionText.numberOfLines = 0;
@@ -91,37 +92,99 @@
     
     NSString *carryPeopleStr;
     if (dic[@"assist"] == [NSNull null]) {
-        carryPeopleStr = [NSString stringWithFormat:@"携访人：  %@", @"无"];
+        carryPeopleStr = [NSString stringWithFormat:@"协访人：  %@", @"无"];
     }else {
-        carryPeopleStr = [NSString stringWithFormat:@"携访人：  %@", dic[@"assist"][@"name"]];
+        carryPeopleStr = [NSString stringWithFormat:@"协访人：  %@", dic[@"assist"][@"name"]];
     }
     
     NSMutableAttributedString *carryPeopleAttrStr = [[NSMutableAttributedString alloc] initWithString:carryPeopleStr];
-    [carryPeopleAttrStr setAttributes:@{NSForegroundColorAttributeName: COMMON_FONT_GRAY_COLOR} range:[carryPeopleStr rangeOfString:@"携访人："]];
+    [carryPeopleAttrStr setAttributes:@{NSForegroundColorAttributeName: COMMON_FONT_GRAY_COLOR} range:[carryPeopleStr rangeOfString:@"协访人："]];
     _carryPeople.attributedText = carryPeopleAttrStr;
     
     
-    if (dic[@"summary"] == [NSNull null]) {
-        _lineView.hidden = YES;
-        _visitConclusion.hidden = YES;
-        _conclusionText.hidden = YES;
-        
-        _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_carryPeople)+kFrameH(_carryPeople)+10);
-        
-    }else {
-        
+//    if (dic[@"summary"] == [NSNull null]) {
+//        _lineView.hidden = YES;
+//        _visitConclusion.hidden = YES;
+//        _conclusionText.hidden = YES;
+//        
+//        _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_carryPeople)+kFrameH(_carryPeople)+10);
+//        
+//    }else {
+//        
+//        _lineView.hidden = NO;
+//        _visitConclusion.hidden = NO;
+//        _conclusionText.hidden = NO;
+//        
+//        _conclusionText.text = dic[@"summary"];
+//        CGSize size = [Function sizeOfStr:dic[@"summary"] andFont:_conclusionText.font andMaxSize:CGSizeMake(kFrameW(_conclusionText), CGFLOAT_MAX)];
+//        _conclusionText.frame = CGRectMake(kFrameX(_conclusionText), kFrameY(_conclusionText), kFrameW(_conclusionText), size.height);
+//        
+//        _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_conclusionText)+kFrameH(_conclusionText)+10);
+//    }
+    
+    
+    
+    if ([dic[@"status"] isEqual:@3]) {
         _lineView.hidden = NO;
         _visitConclusion.hidden = NO;
         _conclusionText.hidden = NO;
         
+        _visitConclusion.text = @"失访原因";
         _conclusionText.text = dic[@"summary"];
         CGSize size = [Function sizeOfStr:dic[@"summary"] andFont:_conclusionText.font andMaxSize:CGSizeMake(kFrameW(_conclusionText), CGFLOAT_MAX)];
         _conclusionText.frame = CGRectMake(kFrameX(_conclusionText), kFrameY(_conclusionText), kFrameW(_conclusionText), size.height);
         
         _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_conclusionText)+kFrameH(_conclusionText)+10);
+        
+    }else if ([dic[@"status"] isEqual:@2]){
+        
+        if (dic[@"summary"] == [NSNull null]) {
+            
+            _lineView.hidden = YES;
+            _visitConclusion.hidden = YES;
+            _conclusionText.hidden = YES;
+            
+            _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_carryPeople)+kFrameH(_carryPeople)+10);
+        }else {
+            
+            _lineView.hidden = NO;
+            _visitConclusion.hidden = NO;
+            _conclusionText.hidden = NO;
+            
+            _visitConclusion.text = @"拜访总结";
+            _conclusionText.text = dic[@"summary"];
+            CGSize size = [Function sizeOfStr:dic[@"summary"] andFont:_conclusionText.font andMaxSize:CGSizeMake(kFrameW(_conclusionText), CGFLOAT_MAX)];
+            _conclusionText.frame = CGRectMake(kFrameX(_conclusionText), kFrameY(_conclusionText), kFrameW(_conclusionText), size.height);
+            
+            _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_conclusionText)+kFrameH(_conclusionText)+10);
+        }
+    }else {
+        if (dic[@"content"] == [NSNull null]) {
+            
+            _lineView.hidden = YES;
+            _visitConclusion.hidden = YES;
+            _conclusionText.hidden = YES;
+            
+            _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_carryPeople)+kFrameH(_carryPeople)+10);
+            
+        }else {
+            
+            _lineView.hidden = NO;
+            _visitConclusion.hidden = NO;
+            _conclusionText.hidden = NO;
+            
+            _visitConclusion.text = @"拜访内容";
+            _conclusionText.text = dic[@"content"];
+            CGSize size = [Function sizeOfStr:dic[@"content"] andFont:_conclusionText.font andMaxSize:CGSizeMake(kFrameW(_conclusionText), CGFLOAT_MAX)];
+            _conclusionText.frame = CGRectMake(kFrameX(_conclusionText), kFrameY(_conclusionText), kFrameW(_conclusionText), size.height);
+            
+            _bgView.frame = CGRectMake(kFrameX(_bgView), kFrameY(_bgView), kFrameW(_bgView), kFrameY(_conclusionText)+kFrameH(_conclusionText)+10);
+        }
     }
+
     
     self.frame = CGRectMake(kFrameX(self), kFrameH(self), kFrameW(self), kFrameH(_bgView)+10);
+    
 }
 
 - (void)awakeFromNib {

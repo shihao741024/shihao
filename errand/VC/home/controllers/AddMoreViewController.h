@@ -10,7 +10,9 @@
 #import "BaseNoTabViewController.h"
 
 @interface AddMoreViewController : BaseNoTabViewController
-@property(nonatomic,strong)NSArray *choicedArr;
-@property(nonatomic,copy)void (^setNewChangeClock)(NSArray*arr);
+
+@property(nonatomic,strong) NSArray *choicedArr;
+
+@property(nonatomic,copy) void (^setNewChangeClock)(NSArray*arr);
 
 @end

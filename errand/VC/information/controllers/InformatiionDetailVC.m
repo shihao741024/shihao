@@ -13,6 +13,12 @@
 #import "MissionDetailViewController.h"
 #import "TaskDetailViewController.h"
 #import "DeclareDetailViewController.h"
+
+#import "WebViewController.h"
+#import "DoctorDetailShowViewController.h"
+#import "ReportDetailVC.h"
+
+
 @interface InformatiionDetailVC ()<UITableViewDataSource,UITableViewDelegate,SRRefreshDelegate>
 
 @end
@@ -38,7 +44,7 @@
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(editClick)];
     
     if (_type != 0) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(editClick)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editClick)];
     }
     
     // Do any additional setup after loading the view.
@@ -213,8 +219,12 @@
     }else if (_type == 2){
         category = @1;
     }
+    
     InformationBll *infomationBll = [[InformationBll alloc]init];
     [infomationBll getInformationData:^(NSArray *arr) {
+        if (pageIndex == 1) {
+            [_dataArray removeAllObjects];
+        }
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [_dataArray addObject:obj];
         }];
@@ -223,6 +233,7 @@
         [_slimeView endRefresh];
         [_tableView footerEndRefreshing];
     } pageIndex:pageIndex category:category viewCtrl:self];
+    
 }
 
 -(void)createSlime{
@@ -284,52 +295,70 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (_type == 0) {
-        return;
-    }
-    
     if (isExpand == NO) {
         InformationModel *model = _dataArray[indexPath.row];
-        NSArray *arr = [model.data componentsSeparatedByString:@","];
-        if ([arr[0] isEqualToString:@"trip"]) {
-            MissionDetailViewController *vc = [[MissionDetailViewController alloc]init];
-            vc.missionID = [NSNumber numberWithInt:[arr[1] intValue]];
-            vc.type = 2;
-            [self.navigationController pushViewController:vc animated:YES];
-            
-            [vc setChangeMissionStatusBlock:^(NSIndexPath *inde, int cate, MissionModel *mo) {
+        if ((NSNull *)model.data ==[NSNull null] ) {
+            [Dialog simpleToast:NoMoreData];
+//            return;
+        } else {
+            NSArray *arr = [model.data componentsSeparatedByString:@","];
+            if ([arr[0] isEqualToString:@"trip"]) {
+                MissionDetailViewController *vc = [[MissionDetailViewController alloc]init];
+                vc.missionID = [NSNumber numberWithInt:[arr[1] intValue]];
+                vc.type = 2;
+                [self.navigationController pushViewController:vc animated:YES];
                 
-            }];
-            
-            [vc setDeleteMissionDataBlock:^(NSIndexPath *inde) {
+                [vc setChangeMissionStatusBlock:^(NSIndexPath *inde, int cate, MissionModel *mo) {
+                    
+                }];
                 
-            }];
-        }else if ([arr[0] isEqualToString:@"task"]){
-            
-            TaskDetailViewController *vc = [[TaskDetailViewController alloc]init];
-            vc.type = 2;
-            vc.taskID = [NSNumber numberWithInt:[arr[1] intValue]];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-            [vc setChangeStatusBlock:^(NSIndexPath *inde, NSString *str) {
+                [vc setDeleteMissionDataBlock:^(NSIndexPath *inde) {
+                    
+                }];
+            }else if ([arr[0] isEqualToString:@"task"]){
                 
-            }];
-        }else if ([arr[0] isEqualToString:@"cost"]){
-            
-            DeclareDetailViewController *vc = [[DeclareDetailViewController alloc]init];
-            vc.type = 2;
-            vc.declareID = [NSNumber numberWithInt:[arr[1] intValue]];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-            [vc setChangeDeclareStatusBlock:^(NSIndexPath *inde, NSNumber *num, NSString *str) {
+                TaskDetailViewController *vc = [[TaskDetailViewController alloc]init];
                 
-            }];
-            
-            [vc setEditFinishRefreshCB:^{
+                vc.taskID = [NSNumber numberWithInt:[arr[1] intValue]];
+                [self.navigationController pushViewController:vc animated:YES];
                 
-            }];
-    }
-   
+                [vc setChangeStatusBlock:^(NSIndexPath *inde, NSString *str) {
+                    
+                }];
+            }else if ([arr[0] isEqualToString:@"cost"]){
+                
+                DeclareDetailViewController *vc = [[DeclareDetailViewController alloc]init];
+                
+                vc.declareID = [NSNumber numberWithInt:[arr[1] intValue]];
+                [self.navigationController pushViewController:vc animated:YES];
+                
+                [vc setChangeDeclareStatusBlock:^(NSIndexPath *inde, NSNumber *num, NSString *str) {
+                    
+                }];
+                
+                [vc setEditFinishRefreshCB:^{
+                    
+                }];
+            }
+            else if ([arr[0] isEqualToString:@"report"]) {
+                ReportDetailVC *vc = [[ReportDetailVC alloc] init];
+                vc.reportID = [NSNumber numberWithInt:[arr[1] intValue]];
+                vc.automaticallyAdjustsScrollViewInsets = NO;
+                vc.edgesForExtendedLayout = UIRectEdgeTop;
+                vc.extendedLayoutIncludesOpaqueBars = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([arr[0] isEqualToString:@"doctor"]) {
+                DoctorDetailShowViewController *vc = [[DoctorDetailShowViewController alloc]init];
+                vc.doctorID = [NSNumber numberWithInt:[arr[1] intValue]];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([arr[0] isEqualToString:@"link"]) {
+                WebViewController *vc = [[WebViewController alloc] init];
+                vc.url = arr[1];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                [Dialog simpleToast:NoMoreData];
+            }
+        }
     }
     
     

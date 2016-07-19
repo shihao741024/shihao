@@ -18,7 +18,8 @@
 #import "Node.h"
 #import "SearchReportVC.h"
 #import "TextViewToolbar.h"
-#import "CustomerVisitDetailViewController.h"
+//#import "CustomerVisitDetailViewController.h"
+#import "VisitRecordDetailViewController.h"
 
 @interface HallViewController ()<SRRefreshDelegate ,UITableViewDataSource,UITableViewDelegate,HPGrowingTextViewDelegate>{
     NSMutableArray *dataArray;
@@ -96,7 +97,22 @@
         [self initData];
         [salesDailyData removeObjectForKey:@"salesDailyData"];
     }
+    
+//    // 禁用 iOS7 返回手势
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    }
 }
+
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    // 开启
+//    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//    }
+//}
+
 - (void)createRightItems{
     UIButton * rightBtnOne = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 30, 30)];
     [rightBtnOne setBackgroundImage:[[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
@@ -194,7 +210,7 @@
     _tableView.dataSource=self;
     _tableView.backgroundColor=COMMON_BACK_COLOR;
     _tableView.showsVerticalScrollIndicator = NO;
-    self.automaticallyAdjustsScrollViewInsets =NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     [self createSlime];
@@ -314,7 +330,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     SalesDailyModel *model = dataArray[section];
-    CGSize size = [self sizeWithString:model.content font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
+    NSString *subStr = [model.content stringByAppendingString:@"\n查看详情拜访"];
+    
+    CGSize size = [self sizeWithString:subStr font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
    CGSize size2 = [self sizeWithString:model.sendingPlace font:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(SCREEN_WIDTH - 100, MAXFLOAT)];
     
     //计算collection的高度
@@ -326,9 +344,9 @@
         }else{
             collectionHeight = (imageWidth+10) *((model.picArray.count/3)+1);
         }
-        return 10+40+size.height+2+10+10 +10+20+size2.height+2+10+30+ collectionHeight ;
+        return 10+40+size.height+2+10+10+10+size2.height+2+10+30+ collectionHeight ;
     }
-    return 10+40+size.height+2+10+10+20+size2.height+2+10+30;
+    return 10+20+size.height+2+10+10+20+size2.height+2+10+30;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
@@ -361,13 +379,11 @@
     }];
     
     return headerView;
-    
-    
 }
 
 - (void)showVisitDetailCtrl:(NSString *)idStr
 {
-    CustomerVisitDetailViewController *viewCtrl = [[CustomerVisitDetailViewController alloc] init];
+    VisitRecordDetailViewController *viewCtrl = [[VisitRecordDetailViewController alloc] init];
     viewCtrl.visitID = [NSNumber numberWithInteger:[idStr integerValue]];
     viewCtrl.automaticallyAdjustsScrollViewInsets = NO;
     viewCtrl.edgesForExtendedLayout = UIRectEdgeTop;

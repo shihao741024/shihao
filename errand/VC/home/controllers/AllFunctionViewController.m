@@ -49,7 +49,7 @@
 }
 
 -(void)createTable{
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
 //    _tableView.bounces = NO;
@@ -118,7 +118,6 @@
                 [arr addObject:vc];
             }
             tbc.viewControllers = arr;
-            
             [self.navigationController pushViewController:tbc animated:YES];
             
         }else{

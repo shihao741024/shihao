@@ -15,4 +15,6 @@
 - (void)refreshData;
 - (void)myVisitWillAppear:(void(^)())action;
 
+@property (nonatomic, strong) NSString *dateStr;
+
 @end

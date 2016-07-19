@@ -95,7 +95,7 @@
     
     if (itemModel.imageResString) {
         if ([itemModel.imageResString hasPrefix:@"http:"]) {
-            [_button setImageWithURL:[NSURL URLWithString:itemModel.imageResString] forState:UIControlStateNormal placeholderImage:nil];
+            [_button sd_setImageWithURL:[NSURL URLWithString:itemModel.imageResString] forState:UIControlStateNormal placeholderImage:nil];
         } else {
             [_button setImage:[UIImage imageNamed:itemModel.imageResString] forState:UIControlStateNormal];
         }

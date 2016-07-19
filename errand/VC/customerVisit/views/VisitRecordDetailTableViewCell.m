@@ -7,6 +7,8 @@
 //
 
 #import "VisitRecordDetailTableViewCell.h"
+#import "DoctorDetailShowViewController.h"
+
 
 @implementation VisitRecordDetailTableViewCell
 {
@@ -16,6 +18,7 @@
     
     UILabel *_nameLabel;
     UILabel *_visitTypeLabel;
+    
     
     UILabel *_visitPeopleTitle;
     UILabel *_visitPeople;
@@ -34,6 +37,8 @@
     
     UILabel *_productTitle;
     UILabel *_product;
+    
+    NSNumber *_doctorId;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier
@@ -66,7 +71,7 @@ CGFloat titleSpace = 10;
     
     _nameLabel = [_bgView createGeneralLabel:17 frame:CGRectMake(30, kFrameY(_visitTypeLabel), kFrameW(_bgView)-30-kFrameW(_visitTypeLabel), kFrameH(_visitTypeLabel)) textColor:COMMON_FONT_BLACK_COLOR];
     
-    
+   
     
     _visitPeopleTitle = [_bgView createGeneralLabel:15 frame:CGRectMake(kFrameX(_nameLabel), kFrameY(_nameLabel)+kFrameH(_nameLabel)+10, titleW, 17) textColor:COMMON_FONT_GRAY_COLOR];
     _visitPeopleTitle.text = @"拜访人：";
@@ -92,7 +97,7 @@ CGFloat titleSpace = 10;
     
     
     _carryPeopleTitle = [_bgView createGeneralLabel:15 frame:CGRectMake(kFrameX(_nameLabel), kFrameY(_leave)+kFrameH(_leave)+10, titleW, 17) textColor:COMMON_FONT_GRAY_COLOR];
-    _carryPeopleTitle.text = @"携访人：";
+    _carryPeopleTitle.text = @"协访人：";
     
     _carryPeople = [_bgView createGeneralLabel:15 frame:CGRectMake(kFrameX(_nameLabel)+titleSpace+titleW, kFrameY(_carryPeopleTitle), kFrameW(_bgView)-kFrameX(_nameLabel)-titleSpace-titleW-5, 17) textColor:COMMON_FONT_BLACK_COLOR];
     _carryPeople.numberOfLines = 0;
@@ -118,6 +123,7 @@ CGFloat titleSpace = 10;
 {
     _statusImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"visitStatus%@", dic[@"status"]]];
     _timeLabel.text = dic[@"visitDate"];
+    _doctorId = dic[@"doctor"][@"id"];
     
     if ([dic[@"category"] isEqual:@0]) {
         _visitTypeLabel.textColor = kGreenColor;
@@ -129,6 +135,26 @@ CGFloat titleSpace = 10;
     
     _nameLabel.text = dic[@"doctor"][@"name"];
     _visitPeople.text = dic[@"belongTo"][@"name"];
+    
+    
+    /*====================*/
+    NSString *nameStr = _nameLabel.text;
+    NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:nameStr];
+    
+    NSRange detailRange = [nameStr rangeOfString:_nameLabel.text];
+    [attri addAttribute:NSLinkAttributeName value:@(NSUnderlineStyleSingle) range:detailRange];
+    [attri addAttribute:NSFontAttributeName value:GDBFont(17) range:NSMakeRange(0, nameStr.length)];
+    
+//    NSUInteger length = [nameStr length];
+//    [attri addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, length)];
+//    [attri addAttribute:NSStrikethroughColorAttributeName value:COMMON_FONT_BLACK_COLOR range:NSMakeRange(0, length)];
+    [_nameLabel setAttributedText:attri];
+    
+    _nameLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nameLableClick)];
+    [_nameLabel addGestureRecognizer:tapGesture];
+    //[UIColor colorWithRed:0.8086 green:0.8086 blue:0.8086 alpha:1.0]  更改成蓝色 COMMON_FONT_BLACK_COLOR
+    /*====================*/
     
     
     if ([Function isNullOrNil:dic[@"arrive"]]) {
@@ -213,6 +239,10 @@ CGFloat titleSpace = 10;
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)nameLableClick{
+    _doctorNameLableClick(_doctorId);
 }
 
 @end

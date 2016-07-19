@@ -11,6 +11,6 @@
 
 @interface DoctorDetailShowViewController : UIViewController
 
-@property (nonatomic, strong) DoctorsModel *doctorModel;
+@property(nonatomic, strong) NSNumber *doctorID;
 
 @end

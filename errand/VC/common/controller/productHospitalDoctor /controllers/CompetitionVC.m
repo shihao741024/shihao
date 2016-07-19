@@ -11,6 +11,8 @@
 #import "ProductionModel.h"
 #import "CommonBll.h"
 #import "ContactViewController.h"
+#import "ContactsViewController.h"
+
 #import "ProductionsTableViewCell.h"
 #import "BATableView.h"
 #import "pinyin.h"
@@ -225,10 +227,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (_type == 1) {
+        ContactsViewController *contactVC = [[ContactsViewController alloc]init];
+        contactVC.type = 5;
+        [self.navigationController pushViewController:contactVC animated:YES];
+    }else {
         ProductionModel *model = _showArray[indexPath.section][indexPath.row];
         self.feedBackProductionModelBlock(model);
         [self.navigationController popViewControllerAnimated:YES];
- 
+    }
 }
 
 - (void)didReceiveMemoryWarning {

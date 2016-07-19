@@ -35,7 +35,7 @@
     NSString *_dateStr;
 }
 
-@property (nonatomic, copy) void(^uploadFinish)();
+@property (nonatomic, copy) void(^uploadFinish)(NSString *dateStr);
 
 @end
 
@@ -44,19 +44,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self dataConfig];
     [self uiConfig];
+    [self dataConfig];
+    
 }
 
 - (void)dataConfig
 {
     if (_type == 0) {
-        _titleArray = @[@"拜访客户：", @"携访人：", @"拜访日期：", @"拜访内容："];
-        _placeholderArray = @[@"请选择客户", @"请选择携访人", @"请选择时间", @"拜访内容"];
+        _titleArray = @[@"拜访客户：", @"协访人：", @"拜访日期：", @"拜访内容："];
+        _placeholderArray = @[@"请选择客户", @"请选择协访人", @"请选择时间", @"拜访内容"];
         _fillInfoArray = [NSMutableArray arrayWithArray:@[@"", @"", @"", @""]];
     }else {
-        _titleArray = @[@"拜访客户：", @"携访人：", @"拜访内容："];
-        _placeholderArray = @[@"请选择客户", @"请选择携访人", @"拜访内容"];
+        _titleArray = @[@"拜访客户：", @"协访人：", @"拜访内容："];
+        _placeholderArray = @[@"请选择客户", @"请选择协访人", @"拜访内容"];
         _fillInfoArray = [NSMutableArray arrayWithArray:@[@"", @"", @""]];
     }
     
@@ -100,7 +101,7 @@
     [self.view endEditing:YES];
     if ([_titleArray[indexPath.row] isEqualToString:@"拜访客户："]) {
         [self showProductionsCtrl:indexPath];
-    }else if ([_titleArray[indexPath.row] isEqualToString:@"携访人："]) {
+    }else if ([_titleArray[indexPath.row] isEqualToString:@"协访人："]) {
         [self selectCarryPeople:indexPath];
     }else if ([_titleArray[indexPath.row] isEqualToString:@"拜访日期："]) {
         [self showSelectDate:indexPath];
@@ -195,14 +196,14 @@
 -(void)MMChoiceDateViewChoiced:(UIDatePicker*)picker
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     if (_type == 0) {
         
         NSString *todayDateStr = [dateFormatter stringFromDate:[NSDate date]];
         NSString *selectStr = [dateFormatter stringFromDate:picker.date];
         if ([todayDateStr compare:selectStr] == NSOrderedAscending) {
             _dateStr = selectStr;
-            [_fillInfoArray replaceObjectAtIndex:_dateIndexPath.row withObject:_dateStr];
+            [_fillInfoArray replaceObjectAtIndex:_dateIndexPath.row withObject:[_dateStr substringToIndex:10]];
             [_tableView reloadData];
         }else {
             [Dialog simpleToast:@"所选时间必须大于今天的时间"];
@@ -294,8 +295,8 @@
         }
         [muDic setObject:_dateStr forKey:@"visitDate"];
     }else {
-//        NSString *dateStr = [Function stringFromDate:[NSDate date]];
-//        [muDic setObject:[dateStr substringToIndex:10] forKey:@"visitDate"];
+        _dateStr = [Function stringFromDate:[NSDate date]];
+        [muDic setObject:[_dateStr substringToIndex:10] forKey:@"visitDate"];
     }
     
     
@@ -314,7 +315,7 @@
         NSLog(@"%@", responseObject);
         [self hideHud];
         [Dialog simpleToast:@"提交成功"];
-        _uploadFinish();
+        _uploadFinish(_dateStr);
         [self.navigationController popViewControllerAnimated:YES];
         
     } errorCB:^(NSError *error) {
@@ -328,7 +329,7 @@
     [_fillInfoArray replaceObjectAtIndex:_fillInfoArray.count-1 withObject:textView.text];
 }
 
-- (void)uploadDataFinishAction:(void(^)())action
+- (void)uploadDataFinishAction:(void(^)(NSString *dateStr))action
 {
     _uploadFinish = action;
 }

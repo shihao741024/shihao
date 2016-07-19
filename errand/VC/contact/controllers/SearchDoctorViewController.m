@@ -142,7 +142,7 @@
 {
     DoctorsModel *model = [[DoctorsModel alloc] initWithDic:_dataArray[indexPath.row]];
     DoctorDetailShowViewController *doctorFillCtrl = [[DoctorDetailShowViewController alloc] init];
-    doctorFillCtrl.doctorModel = model;
+    doctorFillCtrl.doctorID = model.doctorID;
     [self.navigationController pushViewController:doctorFillCtrl animated:YES];
 }
 

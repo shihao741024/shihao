@@ -10,6 +10,8 @@
 #import "ProductionModel.h"
 @interface CompetitionVC : UIViewController
 
+@property(nonatomic,assign)int type;
+
 @property (nonatomic, copy)void (^feedBackProductionModelBlock)(ProductionModel *productionModel);
 
 @end

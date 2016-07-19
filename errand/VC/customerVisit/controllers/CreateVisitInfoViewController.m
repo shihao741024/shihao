@@ -19,7 +19,7 @@
     FillVisitInfoViewController *_tempCtrl;
 }
 
-@property (nonatomic ,copy) void(^uploadFinishRefreshCB)();
+@property (nonatomic ,copy) void(^uploadFinishRefreshCB)(NSString *dateStr);
 
 @end
 
@@ -62,14 +62,14 @@
     
     _planCtrl = [[FillVisitInfoViewController alloc] init];
     _planCtrl.type = 0;
-    [_planCtrl uploadDataFinishAction:^{
-        _uploadFinishRefreshCB();
+    [_planCtrl uploadDataFinishAction:^(NSString *dateStr){
+        _uploadFinishRefreshCB(dateStr);
     }];
     
     _tempCtrl = [[FillVisitInfoViewController alloc] init];
     _tempCtrl.type = 1;
-    [_tempCtrl uploadDataFinishAction:^{
-        _uploadFinishRefreshCB();
+    [_tempCtrl uploadDataFinishAction:^(NSString *dateStr){
+        _uploadFinishRefreshCB(dateStr);
     }];
     
     _ctrlArray = [NSMutableArray arrayWithArray:@[_planCtrl, _tempCtrl]];
@@ -154,7 +154,7 @@
         index = index-1;
     }
     id getCtrl = nil;
-    if (index <0 || index>= _ctrlArray.count) {
+    if (index < 0 || index >= _ctrlArray.count) {
         getCtrl = nil;
     }
     else
@@ -193,7 +193,7 @@
     }
 }
 
-- (void)uploadFinishRefreshAction:(void(^)())action
+- (void)uploadFinishRefreshAction:(void(^)(NSString *dateStr))action
 {
     _uploadFinishRefreshCB = action;
 }

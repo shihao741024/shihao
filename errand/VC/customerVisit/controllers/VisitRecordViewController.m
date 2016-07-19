@@ -91,23 +91,22 @@
         dic = [self configSearchInfo:dic];
     }
     
-    [self showHintInView:self.view];
+//    [self showHintInView:self.view];
     [Function generalPostRequest:urlStr infoDic:dic resultCB:^(id responseObject) {
-        [self hideHud];
+        
         if (pageIndex == 1) {
             [_dataArray removeAllObjects];
         }
         NSMutableArray *content = [NSMutableArray arrayWithArray:responseObject[@"content"]];
         [_dataArray addObjectsFromArray:content];
         [_tableView reloadData];
-        
         if (content.count == 0) {
             [Dialog simpleToast:NoMoreData];
         }
-        
-        
         [_slimeView endRefresh];
         [_tableView footerEndRefreshing];
+        
+        [self hideHud];
     } errorCB:^(NSError *error) {
         
         [self hideHud];
@@ -181,7 +180,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VisitRecordDetailViewController *visitRecordDetailCtrl = [[VisitRecordDetailViewController alloc] init];
-    visitRecordDetailCtrl.visitDic = _dataArray[indexPath.row];
+    visitRecordDetailCtrl.visitID = _dataArray[indexPath.row][@"id"];
     [self.navigationController pushViewController:visitRecordDetailCtrl animated:YES];
     
 }
@@ -192,13 +191,13 @@
     
     NSString *urlStr = [BASEURL stringByAppendingString:@"/api/v1/sale/visitplans/list"];
     NSDictionary *dic = @{@"page": [NSNumber numberWithInteger:pageIndex],
-                          @"size": @"10"};
+                          @"size": @"10"};  
     if (_saveDic) {
         dic = [self configSearchInfo:dic];
     }
-    [self showHintInView:self.view];
+//    [self showHintInView:self.view];
     [Function generalPostRequest:urlStr infoDic:dic resultCB:^(id responseObject) {
-        [self hideHud];
+        
         if (pageIndex == 1) {
             [_dataArray removeAllObjects];
         }
@@ -210,9 +209,10 @@
             [Dialog simpleToast:NoMoreData];
         }
         
-        
         [_slimeView endRefresh];
         [_tableView footerEndRefreshing];
+        [self hideHud];
+        
     } errorCB:^(NSError *error) {
         
         [self hideHud];

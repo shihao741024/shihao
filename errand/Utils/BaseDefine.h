@@ -63,6 +63,12 @@
 #define NoMoreData @"没有更多数据了"
 
 
+//把self转化为 __weak __block的方式, 方便的在block中使用而不导致内存循环应用问题
+//在宏中使用 \ 可以换行
+#define WK(weakSelf) \
+__block __weak __typeof(&*self)weakSelf = self;\
+
+
 #define kTmpFolder [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"]
 #define kMyCaches [kTmpFolder stringByAppendingPathComponent:@"Caches"]
 #define UMPushAlertTag 8702295378

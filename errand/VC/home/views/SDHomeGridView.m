@@ -51,6 +51,7 @@
     CGRect _currentPresssViewFrame;
     int kHomeGridViewTopSectionRowCount;
     UIColor *borderColor;
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -83,7 +84,7 @@
 - (void)setGridModelsArray:(NSArray *)gridModelsArray
 {
     _gridModelsArray = gridModelsArray;
-    kHomeGridViewTopSectionRowCount=gridModelsArray.count%kHomeGridViewPerRowItemCount==0?gridModelsArray.count/kHomeGridViewPerRowItemCount:gridModelsArray.count/kHomeGridViewPerRowItemCount+1;
+    kHomeGridViewTopSectionRowCount = gridModelsArray.count%kHomeGridViewPerRowItemCount==0?gridModelsArray.count/kHomeGridViewPerRowItemCount:gridModelsArray.count/kHomeGridViewPerRowItemCount+1;
     for(UIView *v in self.subviews){
         if([v isKindOfClass:[SDHomeGridViewListItemView class]])
         {
@@ -216,7 +217,6 @@
     longPressed.view.frame = temp;
     
     _lastPoint = point;
-    
     
     [_itemsArray enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
         //if (button == _moreItemButton) return;

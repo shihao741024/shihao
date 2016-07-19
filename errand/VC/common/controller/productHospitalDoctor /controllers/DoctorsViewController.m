@@ -261,6 +261,7 @@
 //        cell.callPhoneBlock = ^(){
 //            
 //        };
+        
         cell.backgroundColor = COMMON_BACK_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return  cell;
@@ -288,7 +289,7 @@
     
     if (_phonebook == YES) {
         DoctorDetailShowViewController *doctorFillCtrl = [[DoctorDetailShowViewController alloc] init];
-        doctorFillCtrl.doctorModel = model;
+        doctorFillCtrl.doctorID = model.doctorID;
         [self.navigationController pushViewController:doctorFillCtrl animated:YES];
         
         return;

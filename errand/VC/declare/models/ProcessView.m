@@ -116,7 +116,7 @@
         }];
         [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
           
-            make.right.equalTo(superView.mas_right).offset(-10);
+            make.right.equalTo(superView.mas_right).offset(10);
             make.top.equalTo(superView.mas_top).offset(0);
 //            make.bottom.equalTo(superView.mas_bottom).offset(0);
             make.width.equalTo(@100);

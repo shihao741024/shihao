@@ -16,6 +16,7 @@
         _taskName = dic[@"title"];
         _phoneNumber = dic[@"belongTo"][@"telephone"];
         _receiverName = dic[@"belongTo"][@"name"];
+        _belongId = dic[@"belongTo"][@"id"];
         _stauts =[NSString stringWithFormat:@"%@",dic[@"status"]];
         _contentStr = dic[@"content"];
         _planCompleteDate = dic[@"planCompleteDate"];
@@ -27,8 +28,7 @@
             _feedback = dic[@"feedback"];
 
         }
-        
-        
+                
         _toName = dic[@"to"][@"name"];
 }
     return self;

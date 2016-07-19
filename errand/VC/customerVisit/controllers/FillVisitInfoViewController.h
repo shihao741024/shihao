@@ -14,6 +14,6 @@
 
 - (void)uploadData;
 
-- (void)uploadDataFinishAction:(void(^)())action;
+- (void)uploadDataFinishAction:(void(^)(NSString *dateStr))action;
 
 @end

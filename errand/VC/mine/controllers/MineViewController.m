@@ -47,10 +47,17 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor=COMMON_BACK_COLOR;
     self.title=NSLocalizedString(@"my", @"my");
+    [Function refreshLoginInfo];
     [self setNavRightBtn];
     [self createTabelView];
- 
+    
 }
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [Function refreshLoginInfo];
+//}
 
 /**
  *  设置 navgationBar 右侧退出按钮
@@ -73,6 +80,7 @@
                 [del login];
                 NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
                 [user removeObjectForKey:@"userName"];
+//                [user removeObjectForKey:@"position"];
                 [user synchronize];
                 [[NSNotificationCenter defaultCenter] postNotificationName:loginOutNotification object:self userInfo:nil];
                 
@@ -155,12 +163,17 @@
 //        tapGesture.cancelsTouchesInView = NO;
         [self.headerImage addGestureRecognizer:tapGesture];
     // 姓名
+    
+    
     self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 300) / 2, 110, 300, 20)];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.font = [UIFont systemFontOfSize:19];
+    
     NSInteger position = [[Function userDefaultsObjForKey:@"position"] integerValue];
     self.nameLabel.text = [NSString stringWithFormat:@"%@—%@", [Function userDefaultsObjForKey:@"name"], [ConfigFile positionArray][position]];
     [headerView addSubview:self.nameLabel];
+    
+    
     
     // 职位
     self.positionLabel = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - 200) / 2, 135, 200, 20)];
@@ -382,14 +395,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

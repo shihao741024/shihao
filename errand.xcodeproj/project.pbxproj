@@ -279,8 +279,21 @@
 		AECC37F81CDC7DA40090FB3A /* ExtendtionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AECC37F71CDC7DA40090FB3A /* ExtendtionAlertView.m */; };
 		AEE932C71CC341CF002341FC /* DoctorFillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE932C61CC341CF002341FC /* DoctorFillViewController.m */; };
 		AEFA9AFE1CCB535C00E921EC /* AgreeDeclareReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFA9AFD1CCB535C00E921EC /* AgreeDeclareReportView.m */; };
+		BE4A1CE91D0FC83800ADC751 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4A1CE81D0FC83800ADC751 /* SearchResultsViewController.m */; };
+		BE67B1F61D123D34003312D7 /* DoctorsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67B1F51D123D34003312D7 /* DoctorsViewCell.m */; };
+		BE7AC35D1D349BDA00EEC0D0 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC35C1D349BDA00EEC0D0 /* WebViewController.m */; };
+		BEA5992E1D07BF4700CC662B /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA5992D1D07BF4700CC662B /* ContactsViewController.m */; };
+		BEA599311D07BF7700CC662B /* ContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA599301D07BF7700CC662B /* ContactsViewCell.m */; };
+		BEA599341D07BFE700CC662B /* ContactsBll.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA599331D07BFE700CC662B /* ContactsBll.m */; };
+		BEA599371D07CB3E00CC662B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA599361D07CB3E00CC662B /* SearchViewController.m */; };
 		BEBF824D1CEC289C008BE77F /* AgreeMissionReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBF824C1CEC289C008BE77F /* AgreeMissionReportView.m */; };
 		BED257D01CEADEB1009A999E /* RejectDeclareReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = BED257CF1CEADEB1009A999E /* RejectDeclareReportView.m */; };
+		BEEBD9D31CFBE879002F0872 /* CompleteReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD9D21CFBE879002F0872 /* CompleteReportView.m */; };
+		BEEBD9D61CFC2B81002F0872 /* MissVisitReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD9D51CFC2B81002F0872 /* MissVisitReportView.m */; };
+		BEEBD9D91CFC2C73002F0872 /* SummaryReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEBD9D81CFC2C73002F0872 /* SummaryReportView.m */; };
+		BEF39C6D1D17C4C700B35664 /* ContactssViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF39C6C1D17C4C700B35664 /* ContactssViewController.m */; };
+		BEF39C701D17C53000B35664 /* SearchsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF39C6F1D17C53000B35664 /* SearchsViewController.m */; };
+		C649AA011D3DB918002AF617 /* StatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C649A9FE1D3DB918002AF617 /* StatementViewController.m */; };
 		F80E456E1C19215300D4CB06 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = F80E45671C19215300D4CB06 /* sr_refresh.png */; };
 		F80E456F1C19215300D4CB06 /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = F80E45681C19215300D4CB06 /* sr_refresh@2X.png */; };
 		F80E45701C19215300D4CB06 /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = F80E456B1C19215300D4CB06 /* SRRefreshView.m */; };
@@ -906,10 +919,36 @@
 		AEFA9AFC1CCB535C00E921EC /* AgreeDeclareReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgreeDeclareReportView.h; sourceTree = "<group>"; };
 		AEFA9AFD1CCB535C00E921EC /* AgreeDeclareReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgreeDeclareReportView.m; sourceTree = "<group>"; };
 		B269A6EC62A4BF9CC17B24B0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BE4A1CE71D0FC83800ADC751 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		BE4A1CE81D0FC83800ADC751 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		BE67B1F41D123D34003312D7 /* DoctorsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorsViewCell.h; sourceTree = "<group>"; };
+		BE67B1F51D123D34003312D7 /* DoctorsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorsViewCell.m; sourceTree = "<group>"; };
+		BE7AC35B1D349BDA00EEC0D0 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		BE7AC35C1D349BDA00EEC0D0 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		BEA5992C1D07BF4700CC662B /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		BEA5992D1D07BF4700CC662B /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		BEA5992F1D07BF7700CC662B /* ContactsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewCell.h; sourceTree = "<group>"; };
+		BEA599301D07BF7700CC662B /* ContactsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewCell.m; sourceTree = "<group>"; };
+		BEA599321D07BFE700CC662B /* ContactsBll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsBll.h; sourceTree = "<group>"; };
+		BEA599331D07BFE700CC662B /* ContactsBll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsBll.m; sourceTree = "<group>"; };
+		BEA599351D07CB3E00CC662B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		BEA599361D07CB3E00CC662B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		BEBF824B1CEC289C008BE77F /* AgreeMissionReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgreeMissionReportView.h; sourceTree = "<group>"; };
 		BEBF824C1CEC289C008BE77F /* AgreeMissionReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgreeMissionReportView.m; sourceTree = "<group>"; };
 		BED257CE1CEADEB1009A999E /* RejectDeclareReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectDeclareReportView.h; sourceTree = "<group>"; };
 		BED257CF1CEADEB1009A999E /* RejectDeclareReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectDeclareReportView.m; sourceTree = "<group>"; };
+		BEEBD9D11CFBE879002F0872 /* CompleteReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteReportView.h; sourceTree = "<group>"; };
+		BEEBD9D21CFBE879002F0872 /* CompleteReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteReportView.m; sourceTree = "<group>"; };
+		BEEBD9D41CFC2B81002F0872 /* MissVisitReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissVisitReportView.h; sourceTree = "<group>"; };
+		BEEBD9D51CFC2B81002F0872 /* MissVisitReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissVisitReportView.m; sourceTree = "<group>"; };
+		BEEBD9D71CFC2C73002F0872 /* SummaryReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryReportView.h; sourceTree = "<group>"; };
+		BEEBD9D81CFC2C73002F0872 /* SummaryReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryReportView.m; sourceTree = "<group>"; };
+		BEF39C6B1D17C4C700B35664 /* ContactssViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactssViewController.h; sourceTree = "<group>"; };
+		BEF39C6C1D17C4C700B35664 /* ContactssViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactssViewController.m; sourceTree = "<group>"; };
+		BEF39C6E1D17C53000B35664 /* SearchsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchsViewController.h; sourceTree = "<group>"; };
+		BEF39C6F1D17C53000B35664 /* SearchsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchsViewController.m; sourceTree = "<group>"; };
+		C649A9FD1D3DB918002AF617 /* StatementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementViewController.h; sourceTree = "<group>"; };
+		C649A9FE1D3DB918002AF617 /* StatementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementViewController.m; sourceTree = "<group>"; };
 		F80E45671C19215300D4CB06 /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
 		F80E45681C19215300D4CB06 /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
 		F80E45691C19215300D4CB06 /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
@@ -1347,6 +1386,8 @@
 				1814D2021C605515003EB6FE /* InformationViewController.m */,
 				139D6E2D1C9FEB4200D57A5F /* InformatiionDetailVC.h */,
 				139D6E2E1C9FEB4200D57A5F /* InformatiionDetailVC.m */,
+				BE7AC35B1D349BDA00EEC0D0 /* WebViewController.h */,
+				BE7AC35C1D349BDA00EEC0D0 /* WebViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1636,6 +1677,10 @@
 				1598FF891CB7BB9900B6C673 /* VisitRecordDetailTableViewCell.m */,
 				15F600F01CB818A300F332EC /* VisitDetailSubTitleTableViewCell.h */,
 				15F600F11CB818A300F332EC /* VisitDetailSubTitleTableViewCell.m */,
+				BEEBD9D41CFC2B81002F0872 /* MissVisitReportView.h */,
+				BEEBD9D51CFC2B81002F0872 /* MissVisitReportView.m */,
+				BEEBD9D71CFC2C73002F0872 /* SummaryReportView.h */,
+				BEEBD9D81CFC2C73002F0872 /* SummaryReportView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1760,6 +1805,8 @@
 				1854A67B1C26FEB8003EAE94 /* TaskEditTableViewCell.m */,
 				18A910CE1C213EB000210614 /* TaskTableViewCell.h */,
 				18A910CF1C213EB000210614 /* TaskTableViewCell.m */,
+				BEEBD9D11CFBE879002F0872 /* CompleteReportView.h */,
+				BEEBD9D21CFBE879002F0872 /* CompleteReportView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1780,6 +1827,8 @@
 			children = (
 				184006B21C1FE52C00D5467D /* ContactBll.h */,
 				184006B31C1FE52C00D5467D /* ContactBll.m */,
+				BEA599321D07BFE700CC662B /* ContactsBll.h */,
+				BEA599331D07BFE700CC662B /* ContactsBll.m */,
 			);
 			path = blls;
 			sourceTree = "<group>";
@@ -1801,6 +1850,16 @@
 				AE5FD8E51CC37BF600701392 /* SearchDoctorViewController.m */,
 				AE9A2C691CCE098200043263 /* HospitalTableViewCell.h */,
 				AE9A2C6A1CCE098200043263 /* HospitalTableViewCell.m */,
+				BEA5992C1D07BF4700CC662B /* ContactsViewController.h */,
+				BEA5992D1D07BF4700CC662B /* ContactsViewController.m */,
+				BEA599351D07CB3E00CC662B /* SearchViewController.h */,
+				BEA599361D07CB3E00CC662B /* SearchViewController.m */,
+				BE4A1CE71D0FC83800ADC751 /* SearchResultsViewController.h */,
+				BE4A1CE81D0FC83800ADC751 /* SearchResultsViewController.m */,
+				BEF39C6B1D17C4C700B35664 /* ContactssViewController.h */,
+				BEF39C6C1D17C4C700B35664 /* ContactssViewController.m */,
+				BEF39C6E1D17C53000B35664 /* SearchsViewController.h */,
+				BEF39C6F1D17C53000B35664 /* SearchsViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1821,6 +1880,10 @@
 		18A7873D1C1FDF7A009F81D1 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				BEA5992F1D07BF7700CC662B /* ContactsViewCell.h */,
+				BEA599301D07BF7700CC662B /* ContactsViewCell.m */,
+				BE67B1F41D123D34003312D7 /* DoctorsViewCell.h */,
+				BE67B1F51D123D34003312D7 /* DoctorsViewCell.m */,
 				AE5FD8DB1CC36C7A00701392 /* DoctorDetailShowTableViewCell.h */,
 				AE5FD8DC1CC36C7A00701392 /* DoctorDetailShowTableViewCell.m */,
 				AE5FD8DD1CC36C7A00701392 /* TextFieldTableViewCell.h */,
@@ -2134,6 +2197,47 @@
 				11D64F3E05753236075D7AB3 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C649A9FA1D3DB918002AF617 /* Statement */ = {
+			isa = PBXGroup;
+			children = (
+				C649A9FB1D3DB918002AF617 /* blls */,
+				C649A9FC1D3DB918002AF617 /* controllers */,
+				C649A9FF1D3DB918002AF617 /* models */,
+				C649AA001D3DB918002AF617 /* views */,
+			);
+			path = Statement;
+			sourceTree = "<group>";
+		};
+		C649A9FB1D3DB918002AF617 /* blls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = blls;
+			sourceTree = "<group>";
+		};
+		C649A9FC1D3DB918002AF617 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C649A9FD1D3DB918002AF617 /* StatementViewController.h */,
+				C649A9FE1D3DB918002AF617 /* StatementViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		C649A9FF1D3DB918002AF617 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		C649AA001D3DB918002AF617 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		F80E45661C19215300D4CB06 /* SlimeRefresh */ = {
@@ -2528,6 +2632,7 @@
 		F88D7A0A1C17AB1E00213A12 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				C649A9FA1D3DB918002AF617 /* Statement */,
 				151453741CB54B3C004D4E11 /* WorkTrail */,
 				1814D1FC1C604695003EB6FE /* information */,
 				18695AC41C24EAA100E7B809 /* salesStatistics */,
@@ -2969,12 +3074,14 @@
 				18ACD1D21C4C91F900CB44C6 /* StatisticsViewController.m in Sources */,
 				180C32761C83E9AF0063F571 /* AssetHelper.m in Sources */,
 				18FB903B1C40F7B000443CE4 /* MissionEdittingTableViewCell.m in Sources */,
+				BEA5992E1D07BF4700CC662B /* ContactsViewController.m in Sources */,
 				13B65BFC1CA0DD21004A3B73 /* InformationDetailTableViewCell.m in Sources */,
 				159CB2D01CB64A74000B7CFC /* ProductionsTableViewCell.m in Sources */,
 				136325141C9FA0C700D4E699 /* DeclareNameView.m in Sources */,
 				18ADBBA41C22881500B2EAE3 /* TaskDetailViewController.m in Sources */,
 				AE84F1A91CC8965700849E8D /* DistriSelectView.m in Sources */,
 				F87B37EF1C1A94C100353FAD /* MBProgressHUD.m in Sources */,
+				BE7AC35D1D349BDA00EEC0D0 /* WebViewController.m in Sources */,
 				181944C91C8544BD00F2B364 /* SelectStaffViewController.m in Sources */,
 				F87B6F1B1C190CD600170AC1 /* HMSegmentedControl.m in Sources */,
 				BED257D01CEADEB1009A999E /* RejectDeclareReportView.m in Sources */,
@@ -2982,6 +3089,7 @@
 				18A910CD1C213C9D00210614 /* TaskModel.m in Sources */,
 				1598FF871CB7894300B6C673 /* VisitManagerToRecordViewController.m in Sources */,
 				154544191CBBA80400DD7303 /* FMResultSet.m in Sources */,
+				BEF39C701D17C53000B35664 /* SearchsViewController.m in Sources */,
 				F822D07E1C17BF57000ED741 /* UIButton+WebCache.m in Sources */,
 				F8E21B181C16FC840076380E /* main.m in Sources */,
 				F88D7A5C1C17ACB800213A12 /* RDVTabBarItem.m in Sources */,
@@ -2995,6 +3103,7 @@
 				AE8DD68C1CC645E300655EBB /* SignStatusTableViewCell.m in Sources */,
 				AE8DC7111CE4B06F003C0ADF /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				1817BFC01C4237920077F985 /* MMChoiceOneView.m in Sources */,
+				BEF39C6D1D17C4C700B35664 /* ContactssViewController.m in Sources */,
 				5677786F1C57B60200F827FA /* Node.m in Sources */,
 				1598FF811CB77D1F00B6C673 /* VisitManagerViewController.m in Sources */,
 				18A910CA1C21365700210614 /* TaskBll.m in Sources */,
@@ -3004,6 +3113,7 @@
 				56AF40191C5B4590008AFA55 /* MyTreeTableViewCell.m in Sources */,
 				1814D2031C605515003EB6FE /* InformationViewController.m in Sources */,
 				18036F4B1C74402B002EBE4E /* ProcessView.m in Sources */,
+				BEEBD9D31CFBE879002F0872 /* CompleteReportView.m in Sources */,
 				AE5FD8D71CC365FA00701392 /* ConfigFile.m in Sources */,
 				F87B6F2F1C1912D700170AC1 /* MissionViewController.m in Sources */,
 				18A787401C1FDF93009F81D1 /* ContactViewController.m in Sources */,
@@ -3017,6 +3127,7 @@
 				F80E45791C192C2100D4CB06 /* MissionModel.m in Sources */,
 				F8D720291C17F9990051576B /* AmotButton.m in Sources */,
 				182AB7871C7D98150025F473 /* DistributionView.m in Sources */,
+				BEEBD9D91CFC2C73002F0872 /* SummaryReportView.m in Sources */,
 				18D2B2851C2BD580009EB65F /* SalesDailyBll.m in Sources */,
 				15E1268E1CBE437400F4A37D /* WorkTrailFunction.m in Sources */,
 				187A060A1C561F9300DA40E5 /* OrganizationalViewController.m in Sources */,
@@ -3050,6 +3161,7 @@
 				18FB3D3F1C969EE1008FD0E8 /* SearchReportVC.m in Sources */,
 				151453731CB54A4F004D4E11 /* CheckWorkFunction.m in Sources */,
 				F822D0521C17BF19000ED741 /* SDGridItemCacheTool.m in Sources */,
+				BEA599341D07BFE700CC662B /* ContactsBll.m in Sources */,
 				F8E21B161C16FC840076380E /* AppDelegate.m in Sources */,
 				F822D07F1C17BF57000ED741 /* UIImage+GIF.m in Sources */,
 				18695AE11C25227100E7B809 /* HuDongSegmentedViewController.m in Sources */,
@@ -3124,6 +3236,7 @@
 				F87B37E41C1A7F3700353FAD /* MissionBll.m in Sources */,
 				18DB6D4D1C7C515100BA0A93 /* CommonBll.m in Sources */,
 				183053CE1C89367E008F121C /* AtModel.m in Sources */,
+				BE4A1CE91D0FC83800ADC751 /* SearchResultsViewController.m in Sources */,
 				18A910D01C213EB000210614 /* TaskTableViewCell.m in Sources */,
 				18D2B2881C2BD5F1009EB65F /* SalesDailyModel.m in Sources */,
 				F822D07B1C17BF57000ED741 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -3149,6 +3262,7 @@
 				1598FF751CB7486F00B6C673 /* VisitRecordViewController.m in Sources */,
 				18C0A06A1C3CC54A0011F26E /* MJExtensionConst.m in Sources */,
 				184006B71C20052600D5467D /* DoctorModel.m in Sources */,
+				C649AA011D3DB918002AF617 /* StatementViewController.m in Sources */,
 				F87B6F1F1C190CF500170AC1 /* MySegmentViewController.m in Sources */,
 				182F8F371C23F404001DFB1D /* DeclareDetailViewController.m in Sources */,
 				18C0A0731C3CC54A0011F26E /* NSString+MJExtension.m in Sources */,
@@ -3157,11 +3271,13 @@
 				18FF40B81C44A3D900FB1F52 /* TaskDetailModel.m in Sources */,
 				F822D0751C17BF57000ED741 /* MKAnnotationView+WebCache.m in Sources */,
 				15F6AB781CBFE97500B15276 /* LocationConclusionTableViewCell.m in Sources */,
+				BEA599371D07CB3E00CC662B /* SearchViewController.m in Sources */,
 				150F45631CB39B9A008C1F8F /* MySearchRecordViewController.m in Sources */,
 				F822D0491C17BEE2000ED741 /* TAAnimatedDotView.m in Sources */,
 				AEFA9AFE1CCB535C00E921EC /* AgreeDeclareReportView.m in Sources */,
 				F822D0301C17BE7D000ED741 /* SDHomeGridView.m in Sources */,
 				AEC4B1821CC52CD40075A72B /* CustomAnnotationView.m in Sources */,
+				BEEBD9D61CFC2B81002F0872 /* MissVisitReportView.m in Sources */,
 				AE5FD8DF1CC36C7A00701392 /* DoctorDetailShowTableViewCell.m in Sources */,
 				18E6F99B1C81317500BD84E3 /* StatisticsCountModel.m in Sources */,
 				18FE16991C30E08A008119CF /* MyRecordModel.m in Sources */,
@@ -3196,12 +3312,14 @@
 				F822D0471C17BEE2000ED741 /* NSData+SDDataCache.m in Sources */,
 				188070A21C195C67005EFC2E /* TaskAssignedViewController.m in Sources */,
 				15F600E91CB8096600F332EC /* CornerBgView.m in Sources */,
+				BEA599311D07BF7700CC662B /* ContactsViewCell.m in Sources */,
 				F8D720301C180D960051576B /* AddMoreViewController.m in Sources */,
 				13ECD6031C9061F3000DF504 /* ReportCountModel.m in Sources */,
 				F822D0831C17BF57000ED741 /* UIImageView+WebCache.m in Sources */,
 				15F600F21CB818A300F332EC /* VisitDetailSubTitleTableViewCell.m in Sources */,
 				18FB90381C40F0FF00443CE4 /* MissionEdittingViewController.m in Sources */,
 				154544161CBBA80400DD7303 /* FMDatabaseAdditions.m in Sources */,
+				BE67B1F61D123D34003312D7 /* DoctorsViewCell.m in Sources */,
 				18DB6D481C7C509000BA0A93 /* ProductionsViewController.m in Sources */,
 				18B2D7B91C1BFE810082F9A8 /* OrganizationBll.m in Sources */,
 				15FA79B11CBF2598000765CC /* PeopleLastLocationTableViewCell.m in Sources */,

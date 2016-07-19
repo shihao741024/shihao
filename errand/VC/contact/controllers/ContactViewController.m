@@ -58,6 +58,13 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [pulldownMenu shouqiMenu];
+    
+    
+}
+
 - (void)createRightSearchItem
 {
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(RecordsearchClick)];
@@ -70,11 +77,6 @@
     [self.navigationController pushViewController:searchDoctorCtrl animated:YES];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:YES];
-    [pulldownMenu shouqiMenu];
-    
-}
 
 /**
  *  获得数据
@@ -374,40 +376,6 @@
             
         }
         
-//        static NSString *CellTableIdentifier = @"staffCell";
-//        StaffTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier];
-//        if (cell == nil) {
-//            cell = [[StaffTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier andType:1];
-//        }
-//          ContactModel *model = dataArray[indexPath.section][indexPath.row];
-//            cell.nameLabel.text = model.hospitalName;
-//        if ([Function isBlankStrOrNull:model.address]) {
-//            cell.phoneNumLabel.text = @"";
-//        }else {
-//            cell.phoneNumLabel.text = model.addressString;
-//        }
-//        
-//        if (_type == 6) {
-//            [cell.stateBtn setImage:[UIImage imageNamed:@"itemchoice_unchecked"] forState:UIControlStateNormal];
-//            __block StaffTableViewCell *selfcell = cell;
-//            
-//            //单选按钮 跳转到费用申请页面
-//            cell.callPhoneBlock = ^(){
-//                [selfcell.stateBtn setImage:[UIImage imageNamed:@"itemchoice_checked"] forState:UIControlStateNormal];
-//                //发送通知
-//                NSArray *arr = @[model,self.productModel];
-//                [[NSNotificationCenter defaultCenter]postNotificationName:@"feedbackHospitalModel" object:arr userInfo:nil];
-//                
-//                [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count - 3] animated:YES];
-//            };
-//
-//        }else{
-//            [cell.stateBtn setImage:[UIImage imageNamed:@"bottom_my"] forState:UIControlStateNormal];
-//            cell.callPhoneBlock = ^(){
-//                
-//            };
-//
-//        }
         cell.backgroundColor = COMMON_BACK_COLOR;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return  cell;
@@ -426,7 +394,6 @@
     if ([dataArray[indexPath.section] count] == 0) {
         return 0;
     }
-//    return 70;
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return kFrameH(cell);
 }
@@ -474,7 +441,7 @@
       
             DoctorsViewController *doctorVC = [[DoctorsViewController alloc]init];
             doctorVC.contactModel = model;
-        doctorVC.popIndex = _popIndex;
+            doctorVC.popIndex = _popIndex;
             doctorVC.productionModel = self.productModel;
             [self.navigationController pushViewController:doctorVC animated:YES];
         

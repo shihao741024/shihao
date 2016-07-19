@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>6</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Use Map</string>
+	<string>医路行需要获取您的实时GPS坐标，以便绘制您的工作轨迹，管理工作路线				</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -36,7 +36,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
-	<true/>
+	<false/>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

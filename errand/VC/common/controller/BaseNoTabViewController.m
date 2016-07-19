@@ -635,7 +635,7 @@
     
     imageView1.image = UIGraphicsGetImageFromCurrentImageContext();
     
-    //标题
+    //任务标题
     UILabel *titleLabel = [self createLabelWithFont:20 andTextColor:[UIColor blackColor] andTextAlignment:NSTextAlignmentCenter andText:taskModel.taskName];
     [bgView addSubview:titleLabel];
     
@@ -647,8 +647,8 @@
         make.height.equalTo(@25);
     }];
     
-    //内容
-    UILabel *remarkLabel = [self createLabelWithFont:15 andTextColor:[UIColor lightGrayColor] andTextAlignment:NSTextAlignmentLeft andText:[NSString stringWithFormat:@"%@",taskModel.contentStr]];
+    //任务内容
+    UILabel *remarkLabel = [self createLabelWithFont:15 andTextColor:[UIColor lightGrayColor] andTextAlignment:NSTextAlignmentLeft andText:[NSString stringWithFormat:@"任务内容:%@",taskModel.contentStr]];
     [bgView addSubview:remarkLabel];
     remarkLabel.lineBreakMode = NSLineBreakByWordWrapping;
     remarkLabel.numberOfLines = 0;
@@ -660,48 +660,100 @@
         make.width.equalTo(bgView.width - 30);
         make.height.equalTo(size.height);
     }];
+    
+    
+    
+    //任务反馈
     if ([taskModel.feedback isEqualToString:@""]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             bgView.contentSize = CGSizeMake(SCREEN_WIDTH-20, remarkLabel.frame.origin.y + size.height + 15 );
         });
     }else {
-        UILabel *progressLabel = [self createLabelWithFont:17 andTextColor:[UIColor blackColor] andTextAlignment:NSTextAlignmentLeft andText:@"反馈意见"];
-        [bgView addSubview:progressLabel];
-        [progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(bgView.mas_left).offset(10);
-            make.top.equalTo(remarkLabel.mas_bottom).offset(15);
-            make.width.equalTo(@100);
-            make.height.equalTo(@20);
-        }];
-        UILabel *lineLabel = [[UILabel alloc]init];
-        lineLabel.backgroundColor = [UIColor colorWithWhite:0.906 alpha:1.000];
-        [bgView addSubview:lineLabel];
-        [lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(bgView.mas_left).offset(0);
-            make.top.equalTo(progressLabel.mas_bottom).offset(5);
-            make.width.equalTo(SCREEN_WIDTH-20);
-            make.height.equalTo(@01);
+        UIImageView *imageView2 = [[UIImageView alloc] init];
+        [bgView addSubview:imageView2];
+        
+        [imageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(remarkLabel.mas_bottom).offset(0);
+            make.left.equalTo(bgView.mas_left).offset(5);
+            make.width.equalTo(bgView.width);
+            make.height.equalTo(10);
         }];
         
-        CGFloat height = 0.0;
-       
-            ProcessView *processView = [[ProcessView alloc]init];
-            [bgView addSubview:processView];
-            
-            //流程
-            [processView setTaskDetailModelToView:taskModel];
-            CGSize size = [self sizeWithString:taskModel.feedback font:[UIFont systemFontOfSize:17] maxSize:CGSizeMake(SCREEN_WIDTH-60, MAXFLOAT)];
-            height = height + 40 +size.height + 10;
-            [processView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(bgView.mas_left).offset(0);
-                make.top.equalTo(lineLabel.mas_bottom).offset(10);
-                make.width.equalTo(SCREEN_WIDTH-20);
-                make.height.equalTo(40 + size.height);
-            }];
+        UIGraphicsBeginImageContext(imageView2.frame.size);   //开始画线
+        [imageView2.image drawInRect:CGRectMake(0, 0, imageView2.frame.size.width, imageView2.frame.size.height)];
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);  //设置线条终点形状
+        
+        CGFloat lengths[] = {10,5};
+        CGContextRef line = UIGraphicsGetCurrentContext();
+        CGContextSetStrokeColorWithColor(line, [UIColor lightGrayColor].CGColor);
+        
+        CGContextSetLineDash(line, 0, lengths, 2);  //画虚线
+        CGContextMoveToPoint(line, 0.0, 10.0);    //开始画线
+        CGContextAddLineToPoint(line, bgView.width-10, 10.0);
+        CGContextStrokePath(line);
+        imageView2.image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UILabel *progressLabel = [[UILabel alloc] init];
+        if ([taskModel.stauts intValue] == 3) {
+            progressLabel = [self createLabelWithFont:15 andTextColor:[UIColor lightGrayColor] andTextAlignment:NSTextAlignmentLeft andText:[NSString stringWithFormat:@"拒绝原因:%@",taskModel.feedback]];
+        }else {
+            progressLabel = [self createLabelWithFont:15 andTextColor:[UIColor lightGrayColor] andTextAlignment:NSTextAlignmentLeft andText:[NSString stringWithFormat:@"反馈结果:%@",taskModel.feedback]];
+        }
+        
+        [bgView addSubview:progressLabel];
+        progressLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        progressLabel.numberOfLines = 0;
+        CGSize size = [self sizeWithString:taskModel.feedback font:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(bgView.width - 30, MAXFLOAT)];
+        //    NSLog(@"%lf",size.height);
+        [progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(imageView2.mas_bottom).offset(6);
+            make.left.equalTo(bgView.mas_left).offset(15);
+            make.width.equalTo(bgView.width - 30);
+            make.height.equalTo(size.height);
+        }];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            bgView.contentSize = CGSizeMake(SCREEN_WIDTH-20, lineLabel.frame.origin.y + height + 10);
+            bgView.contentSize = CGSizeMake(SCREEN_WIDTH-20, progressLabel.frame.origin.y + size.height + 15 );
         });
+        
+//        UILabel *progressLabel = [self createLabelWithFont:17 andTextColor:[UIColor blackColor] andTextAlignment:NSTextAlignmentLeft andText:@"反馈结果"];
+//        [bgView addSubview:progressLabel];
+//        [progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(bgView.mas_left).offset(10);
+//            make.top.equalTo(remarkLabel.mas_bottom).offset(15);
+//            make.width.equalTo(@100);
+//            make.height.equalTo(@20);
+//        }];
+//        UILabel *lineLabel = [[UILabel alloc]init];
+//        lineLabel.backgroundColor = [UIColor colorWithWhite:0.906 alpha:1.000];
+//        [bgView addSubview:lineLabel];
+//        [lineLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(bgView.mas_left).offset(0);
+//            make.top.equalTo(progressLabel.mas_bottom).offset(5);
+//            make.width.equalTo(SCREEN_WIDTH-20);
+//            make.height.equalTo(@01);
+//        }];
+//        
+//        CGFloat height = 0.0;
+//       
+//            ProcessView *processView = [[ProcessView alloc]init];
+//            [bgView addSubview:processView];
+//            
+//            //流程
+//            [processView setTaskDetailModelToView:taskModel];
+//            CGSize size = [self sizeWithString:taskModel.feedback font:[UIFont systemFontOfSize:17] maxSize:CGSizeMake(SCREEN_WIDTH-60, MAXFLOAT)];
+//            height = height + 40 +size.height + 10;
+//            [processView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                make.left.equalTo(bgView.mas_left).offset(0);
+//                make.top.equalTo(lineLabel.mas_bottom).offset(10);
+//                make.width.equalTo(SCREEN_WIDTH-20);
+//                make.height.equalTo(40 + size.height);
+//            }];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            
+//            bgView.contentSize = CGSizeMake(SCREEN_WIDTH-20, lineLabel.frame.origin.y + height + 10);
+//        });
+        
+        
     }
     
 }
