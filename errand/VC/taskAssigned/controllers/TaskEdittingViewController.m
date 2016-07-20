@@ -144,9 +144,9 @@
         TaskEditTableViewCell *cell1 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         TaskEditTableViewCell *cell2 = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
         cell1.detailLabel.text = @"请选择产品";
-        cell1.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//        cell1.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
         cell2.detailLabel.text = @"请选择医院／医生";
-        cell2.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//        cell2.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
         
         cell1.detailLabel.clearButton.hidden = YES;
         cell2.detailLabel.clearButton.hidden = YES;
@@ -375,15 +375,15 @@
             case 1:{
                 if (indexPath.item == 1) {
                     cell.detailLabel.text = @"请选择项目";
-                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
                 }
                 if (indexPath.item == 1) {
                     cell.detailLabel.text = @"请选择产品";
-                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
                 }
                 if (indexPath.item == 2) {
                     cell.detailLabel.text = @"请选择医院／医生";
-                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//                    cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
                 }
 
                 if (indexPath.item == 6) {

@@ -33,7 +33,8 @@
 
 // 2016-04-06 12:27:35 根据返回日期和星期 2016.04.06 周三
 + (NSString *)getDateAndWeek:(NSString *)time;
-
+//判断字符串是否为空
++(NSString *)strIsNull:(NSString *)str;
 //根据NSDate获取星期
 + (NSString *)getWeekWithDate:(NSDate *)date;
 //弹出错误提示
@@ -63,10 +64,15 @@
 
 //是否跳转系统设置定位页面
 + (void)isShowSystemLocationSetupPage:(NSInteger)buttonIndex;
-
-
 //用户没有开启定位
 + (void)alertUserDeniedLocation:(NSError *)error delegate:(id)delegate;
+
+//是否跳转系统设置通知页面
++ (void)isShowSystemNotificationSetupPage:(NSInteger)buttonIndex;
+//用户没有开启通知
++ (void)alertUserDeniedNotificationDelegate:(id)delegate;
+
+
 //刷新登录信息
 + (void)refreshLoginInfo;
 

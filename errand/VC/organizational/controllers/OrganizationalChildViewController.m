@@ -38,8 +38,21 @@
 {
     NSLog(@"OrganizationalChildViewController%@", _staffModel.originalDic);
     _titleArray = @[@"员工姓名：", @"所属部门：", @"联系电话：", @"微信：", @"邮箱："];
-    _dataArray = @[_staffModel.staffName, _staffModel.departmentName, _staffModel.phoneNumber, _staffModel.weixin, _staffModel.email];
+    NSString *staffName = [Function strIsNull:_staffModel.staffName];
+    NSString *departmentName = [Function strIsNull:_staffModel.departmentName];
+    NSString *phoneNumber = [Function strIsNull:_staffModel.phoneNumber];
+    NSString *weixin = [Function strIsNull:_staffModel.weixin];
+    NSString *email = [Function strIsNull:_staffModel.email];
+    _dataArray = @[staffName, departmentName,phoneNumber,weixin,email];
+//    _dataArray = @[_staffModel.staffName,_staffModel.departmentName,_staffModel.phoneNumber,_staffModel.weixin,_staffModel.email];
 }
+
+//-(NSString *)strIsNull:(NSString *)str{
+//    if ([str isEqual:[NSNull null]] || str == nil) {
+//        return @"";
+//    }
+//    return str;
+//}
 
 - (void)uiConfig
 {

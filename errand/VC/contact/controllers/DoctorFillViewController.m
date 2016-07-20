@@ -111,7 +111,7 @@
 
 - (void)updateInfoWithDic:(NSDictionary *)dic
 {
-    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/complete/%@", _doctorModel.doctorID];
+    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/complete/%@", _doctorID];
     
     [self showHintInView:self.view];
     [Function generalPostRequest:urlStr infoDic:dic resultCB:^(id responseObject) {
@@ -142,7 +142,7 @@
 
 - (void)prepareData
 {
-    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/%@", _doctorModel.doctorID];
+    NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/doctors/%@",_doctorID];
     [self showHintInView:self.view];
     [Function generalGetRequest:urlStr infoDic:nil resultCB:^(id responseObject) {
         [self hideHud];

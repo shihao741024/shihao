@@ -44,10 +44,19 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
-
+//监听通知有没有开启
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    if (iOSVersion >= 8.0) {
+        if ([[UIApplication sharedApplication] currentUserNotificationSettings].types  == UIRemoteNotificationTypeNone) {
+            [Function alertUserDeniedNotificationDelegate:self];
+        }
+    }else {
+        if ([[UIApplication sharedApplication] enabledRemoteNotificationTypes]  == UIRemoteNotificationTypeNone) {
+            [Function alertUserDeniedNotificationDelegate:self];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -244,14 +253,14 @@
     [_locationManager setPausesLocationUpdatesAutomatically:NO];
     [_locationManager setAllowsBackgroundLocationUpdates:YES];
     [_locationManager startUpdatingLocation];
-    NSLog(@"runLocationProcess");
+//    NSLog(@"runLocationProcess");
 }
 
 #pragma mark - AMapLocationManager Delegate
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    NSLog(@"didUpdateLocation%@", location);
+//    NSLog(@"didUpdateLocation%@", location);
     [manager stopUpdatingLocation];
     
     //初始化检索对象
@@ -277,6 +286,9 @@
 {
     if (alertView.tag == LocationErrorAlertTag) {
         [Function isShowSystemLocationSetupPage:buttonIndex];
+    }
+    if (alertView.tag == NotificationAlertFlag) {
+        [Function isShowSystemNotificationSetupPage:buttonIndex];
     }
 }
 

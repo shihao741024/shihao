@@ -849,14 +849,14 @@
     [_locationManager setPausesLocationUpdatesAutomatically:NO];
     [_locationManager setAllowsBackgroundLocationUpdates:YES];
     [_locationManager startUpdatingLocation];
-    NSLog(@"runLocationProcess");
+//    NSLog(@"runLocationProcess");
 }
 
 #pragma mark - AMapLocationManager Delegate
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    NSLog(@"didUpdateLocation%@", location);
+//    NSLog(@"didUpdateLocation%@", location);
     [manager stopUpdatingLocation];
     
     //初始化检索对象

@@ -9,7 +9,7 @@
 #import "TravelSituationViewController.h"
 #import "LocationDetailViewController.h"
 #import "TravelSituationTableViewCell.h"
-
+//#import "ShowTrailViewController.h"
 @interface TravelSituationViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     UILabel *_headDateLabel;
@@ -33,7 +33,15 @@
     [self prepareDate];
     
 }
+- (void)navigationItemClicked:(UIButton *)barButtonItem
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 
+}
 - (void)rightItemTitleClick
 {
     LocationDetailViewController *detailCtrl = [[LocationDetailViewController alloc] init];
@@ -65,6 +73,7 @@
 - (void)prepareDate
 {
     NSString *urlStr = [BASEURL stringByAppendingFormat:@"/api/v1/sale/path/summary/%@", _saleId];
+    NSLog(@"_saleId------------%@",_saleId);
     NSDictionary *dic = @{@"startDate": _startDate};
     
     [self showHintInView:self.view];

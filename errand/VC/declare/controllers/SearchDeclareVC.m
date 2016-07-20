@@ -290,7 +290,7 @@
 
             }else{
                 cell.detailLabel.text = @"请选择医院或医生";
-                cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//                cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
             }
            
         }
@@ -306,25 +306,15 @@
             _contentField.text = _searchArray[3];
             
         }
-//        if (indexPath.row == 4) {
-//            
-//            [cell addSubview:_titleField];
-//            _titleField.text = _searchArray[4];
-//            
-//        }
         if (indexPath.row == 5) {
             [cell.detailLabel setTextWithString:_searchArray[5] andIndex:indexPath.row];
              status = _searchArray[6];
         }
       
-    }
-    else{
-//        if (indexPath.row == 0) {
-//            cell.detailLabel.text = @"请选择项目名称";
-//        }
+    }else{
         if (indexPath.row == 2) {
             cell.detailLabel.text = @"请选择医院或医生";
-            cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
+//            cell.detailLabel.textColor = COMMON_FONT_GRAY_COLOR;
         }
         if (indexPath.row == 3) {
             [cell addSubview:_useWayField];
@@ -332,10 +322,6 @@
         if (indexPath.row == 4) {
             [cell addSubview:_contentField];
         }
-//        if (indexPath.row == 4) {
-//            [cell addSubview:_titleField];
-//        }
-        
     }
     
     cell.nameLabel.text = _dataArray[indexPath.row];

@@ -123,8 +123,10 @@
         NSString *afterStr = [[visitStr componentsSeparatedByString:@":"] objectAtIndex:1];
         NSString *idStr = [afterStr substringToIndex:afterStr.length-1];
         _idStr = idStr;
+        
         NSString *subStr = [model.content stringByReplacingOccurrencesOfString:visitStr withString:@""];
         subStr = [subStr stringByAppendingString:@" 查看详情拜访"];
+        
 //        NSRange range = [subStr rangeOfString:@"^(\\s*)\\n" options:NSRegularExpressionSearch];
 //        if (range.location != NSNotFound) {
 //            subStr = [subStr substringWithRange:range];
@@ -134,7 +136,7 @@
         NSURL *url = [NSURL URLWithString:@"https://www.visitContentClick.com"];
         [contentAttributed addAttribute:NSLinkAttributeName value:url range:detailRange];
         [contentAttributed addAttribute:NSFontAttributeName value:GDBFont(17) range:NSMakeRange(0, contentAttributed.length)];
-        
+        NSLog(@"contentAttributed----------->%@",contentAttributed);
         _contentTextView.attributedText = contentAttributed;
         _contentTextView.hidden = NO;
         _contentLabel.hidden = YES;

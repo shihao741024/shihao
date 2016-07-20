@@ -330,9 +330,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     SalesDailyModel *model = dataArray[section];
-    NSString *subStr = [model.content stringByAppendingString:@"\n查看详情拜访"];
+//    NSString *subStr = [model.content stringByAppendingString:@" 查看详情拜访"];
     
-    CGSize size = [self sizeWithString:subStr font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
+    CGSize size = [self sizeWithString:model.content font:[UIFont systemFontOfSize:17]  maxSize:CGSizeMake(SCREEN_WIDTH - 85, MAXFLOAT)];
    CGSize size2 = [self sizeWithString:model.sendingPlace font:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(SCREEN_WIDTH - 100, MAXFLOAT)];
     
     //计算collection的高度
@@ -344,9 +344,9 @@
         }else{
             collectionHeight = (imageWidth+10) *((model.picArray.count/3)+1);
         }
-        return 10+40+size.height+2+10+10+10+size2.height+2+10+30+ collectionHeight ;
+        return 10+40+size.height+2+10+10+30+size2.height+2+10+30+ collectionHeight ;
     }
-    return 10+20+size.height+2+10+10+20+size2.height+2+10+30;
+    return 10+40+size.height+2+10+10+20+size2.height+2+10+30;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;

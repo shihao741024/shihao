@@ -21,6 +21,8 @@
 + (void)generalPostRequest:(NSString *)url infoDic:(NSDictionary *)infoDic resultCB:(void(^)(id responseObject))resultCB errorCB:(void(^)(NSError *error))errorCB
 {
     
+//    NSLog(@"dic------------------>%@",infoDic);
+    
     NSDictionary *dic = [Function getParametersDic:infoDic];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -107,6 +109,14 @@
     NSString *dateStr = [time substringToIndex:10];
     NSString *week = [Function getWeekWithDate:date];
     return [NSString stringWithFormat:@"%@ %@", dateStr, week];
+}
++(NSString *)strIsNull:(NSString *)str{
+
+    if ([str isEqual:[NSNull null]] || str == nil) {
+        return @"";
+    }
+    return str;
+
 }
 
 + (NSString *)getWeekWithDate:(NSDate *)date
@@ -303,14 +313,27 @@
 {
     [Function userDefaultsRemoveObjForKey:LocationAlertedFlag];
     
-    if (buttonIndex == 1) {
-        NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+    if (buttonIndex == 1)
+//    {
+//        NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+//        
+//        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
+        
+        
+        
+        
+        {
+        NSURL*url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
         
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url];
         }
+
     }
 }
+
 
 + (void)alertUserDeniedLocation:(NSError *)error delegate:(id)delegate
 {
@@ -319,12 +342,38 @@
     if (![Function userDefaultsObjForKey:LocationAlertedFlag]) {
         [Function userDefaultsSetObj:@"1" forKey:LocationAlertedFlag];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"请在设置中允许定位，否则无法获取相应位置" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"您的定位服务尚未开启,请在设置中允许定位,否则无法为您操作定位服务,是否立即开启" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alert.tag = LocationErrorAlertTag;
         [alert show];
     }
-    
 }
+
+/** 开通知 */
++ (void)isShowSystemNotificationSetupPage:(NSInteger)buttonIndex {
+    [Function userDefaultsRemoveObjForKey:NotificationAlertedFlag];
+    if (buttonIndex == 1) {
+//        NSURL*url=[NSURL URLWithString:@"prefs:root=NOTIFICATIONS_ID"];
+//        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
+        NSURL*url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+            [[UIApplication sharedApplication] openURL:url];
+    }
+    }
+}
+
++ (void)alertUserDeniedNotificationDelegate:(id)delegate {
+    if (![Function userDefaultsObjForKey:NotificationAlertedFlag]) {
+        [Function userDefaultsSetObj:@"3" forKey:NotificationAlertedFlag];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"您的消息推送功能尚未开启,你将无法收到消息服务,是否立即开启" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alert.tag = NotificationAlertFlag;
+        [alert show];
+    }
+}
+
+
 
 + (void)refreshLoginInfo
 {
@@ -361,7 +410,7 @@
     
     [Function userDefaultsRemoveObjForKey:@"unauthorizedAlert"];
     [Function userDefaultsRemoveObjForKey:LocationAlertedFlag];
-    
+    [Function userDefaultsRemoveObjForKey:NotificationAlertedFlag];
 }
 
 + (id)unarchiveObjectWithFile:(NSString *)path

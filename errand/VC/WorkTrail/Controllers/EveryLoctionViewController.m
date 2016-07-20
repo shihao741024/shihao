@@ -323,6 +323,7 @@
     ShowTrailViewController *trailMapCtrl = [[ShowTrailViewController alloc] init];
     trailMapCtrl.saleId = _dataArray[indexPath.section][indexPath.row][@"saleId"];
     [self.navigationController pushViewController:trailMapCtrl animated:YES];
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

@@ -20,10 +20,10 @@
     if (self = [super init]) {
        //数据不明确
         _companyName = @"医路行";
-        _positionName = [NSString stringWithFormat:@"%@",dic[@"organization"][@"quantity"]];
         _state = @"在职";
-        _avatar = dic[@"avatar"];
         
+        _avatar = dic[@"avatar"];
+        _positionName = [NSString stringWithFormat:@"%@",dic[@"organization"][@"quantity"]];
         _staffName = dic[@"name"];
         _phoneNumber = dic[@"telephone"];
         _departmentName = dic[@"organization"][@"name"];
@@ -33,6 +33,45 @@
         _weixin = dic[@"weixin"];
         _email = dic[@"email"];
         _originalDic = dic;
+        
+//        if (![Function isNullOrNil:dic[@"name"]] ) {
+//            _staffName = dic[@"name"];
+//        }
+//        if (![Function isNullOrNil:dic[@"email"]] ) {
+//            _staffName = dic[@"name"];
+//        }
+//        if (![Function isNullOrNil:dic[@"weixin"]] ) {
+//            _weixin = dic[@"weixin"];
+//        }
+//        if (![Function isNullOrNil:dic[@"telephone"]] ) {
+//            _phoneNumber = dic[@"telephone"];
+//        }
+//        if (![Function isNullOrNil:dic[@"organization"][@"name"]] ) {
+//            _departmentName = dic[@"organization"][@"name"];
+//        }
+//        if (![Function isNullOrNil:dic[@"avatar"]] ) {
+//           _avatar = dic[@"avatar"];
+//        }
+//        if (![Function isNullOrNil:dic] ) {
+//            _originalDic = dic;
+//        }
+//        if (![Function isNullOrNil:dic[@"organization"][@"quantity"]] ) {
+//            _positionName = [NSString stringWithFormat:@"%@",dic[@"organization"][@"quantity"]];
+//        }
+//        if (![Function isNullOrNil:dic[@"id"]] ) {
+//            _ID = dic[@"id"];
+//        }
+
+
+
+
+
+
+
+
+
+        
+        
     }
     return self;
 }

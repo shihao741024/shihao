@@ -33,11 +33,12 @@
     // Do any additional setup after loading the view.
     //
 //
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 //    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    appDelegate.allowRotation = 1;
     [self webView];
     [self addBackButton];
+    
 }
 
 
@@ -49,6 +50,15 @@
     [[self rdv_tabBarController] setTabBarHidden:YES animated:NO];
 }
 
+
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:YES];
+
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.allowRotation = 0;
+    
+}
 
 -(UIWebView*)webView{
     if (_webView == nil) {
@@ -70,13 +80,6 @@
         [_webView loadRequest:mrequest];
     }
     return _webView;
-}
--(void)viewWillDisappear:(BOOL)animated{
-
-    [super viewWillDisappear:YES];
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    appDelegate.allowRotation = 0;
-   
 }
 
 

@@ -52,7 +52,24 @@
     [self uiConfig];
     [self prepareData];
     
+    
 }
+- (void)navigationItemClicked:(UIBarButtonItem *)barButtonItem;
+{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
+    _mapView.showsUserLocation = NO;
+    _mapView.userTrackingMode = MAUserTrackingModeNone;
+    [_mapView.layer removeAllAnimations];
+    _mapView.delegate = nil;
+    [_mapView removeAnnotations:_allAnnotations];
+    [_mapView removeOverlays:_overlaysAboveLabels];
+    [_mapView removeFromSuperview];
+    _mapView = nil;
+
+}
+
 //初始化数组
 - (void)dataConfig
 {
@@ -71,6 +88,7 @@
 {
     TravelSituationViewController *travelSituationCtrl = [[TravelSituationViewController alloc] init];
     travelSituationCtrl.saleId = _saleId;
+    NSLog(@"%@",_saleId);
     travelSituationCtrl.startDate = [self getStartDate];
     [self.navigationController pushViewController:travelSituationCtrl animated:YES];
 }
@@ -535,24 +553,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
     
     [_mapView addAnnotations:_allAnnotations];
     [_mapView showAnnotations:_allAnnotations edgePadding:UIEdgeInsetsMake(20, 20, 20, 20) animated:YES];
 }
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    _mapView.showsUserLocation = NO;
-    _mapView.userTrackingMode = MAUserTrackingModeNone;
-    [_mapView.layer removeAllAnimations];
-    _mapView.delegate = nil;
-    [_mapView removeAnnotations:_mapView.annotations];
-    [_mapView removeOverlays:_overlaysAboveLabels];
-    [_mapView removeFromSuperview];
-    _mapView = nil;
-    
-}
+
 /*
  #pragma mark - Navigation
  

@@ -56,6 +56,9 @@
 #define LocationErrorAlertTag 21432132213
 #define LocationAlertedFlag @"LocationAlertedFlag"
 
+#define NotificationAlertFlag 34553345
+#define NotificationAlertedFlag @"NotificationAlertedFlag"
+
 #define iOSVersion [[UIDevice currentDevice].systemVersion floatValue]
 
 #define UMAnalyticsKey @"5696faf767e58e70c200194b"
