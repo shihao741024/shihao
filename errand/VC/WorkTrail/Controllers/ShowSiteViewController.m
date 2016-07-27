@@ -48,9 +48,6 @@
     _mapView.rotateEnabled = NO;
     _mapView.showsUserLocation = NO;
     _mapView.zoomLevel = 15;
-    
-    
-    
 }
 
 
