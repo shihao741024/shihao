@@ -129,8 +129,10 @@
 }
 //右上角的两个button
 - (void)addClick{
+    
     AddRecordVC *addRecordVC = [[AddRecordVC alloc]init];
     [self.navigationController pushViewController:addRecordVC animated:YES];
+    NSLog(@"添加111111111111111111111111111111");
 }
 
 - (void)searchClick{

@@ -14,7 +14,6 @@
 
 @implementation StatementViewController
 
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -38,6 +37,9 @@
 //    appDelegate.allowRotation = 1;
     [self webView];
     [self addBackButton];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
 }
 
 

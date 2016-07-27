@@ -19,7 +19,7 @@
 #import "RDVTabBarController.h"
 #import "ExtendtionAlertView.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, AMapSearchDelegate, AMapLocationManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, AMapSearchDelegate, AMapLocationManagerDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LoginViewController *viewController;

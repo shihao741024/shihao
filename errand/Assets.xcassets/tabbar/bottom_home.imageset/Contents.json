@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "工作台1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "工作台2x.png",
       "scale" : "2x"
     },
     {

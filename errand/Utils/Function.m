@@ -30,7 +30,7 @@
     [Function configRequestHeader:manager];
     
     [manager POST:url parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         resultCB(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
@@ -161,7 +161,7 @@
     
     [manager POST:url parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *result = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
         resultCB(result);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
@@ -226,7 +226,7 @@
     [Function configRequestHeader:manager];
     
     [manager GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         resultCB(responseObject);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         [Function maybeShowLoginCtrlWith:error];
@@ -304,27 +304,70 @@
     [Function userDefaultsRemoveObjForKey:LocationAlertedFlag];
     
     if (buttonIndex == 1) {
-        NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
         
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
+        if (iOSVersion >= 8.0) {
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        } else {
+            NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
         }
+        
+        
+//        NSURL*url=[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+//        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+//            [[UIApplication sharedApplication] openURL:url];
+//        }
     }
 }
 
 + (void)alertUserDeniedLocation:(NSError *)error delegate:(id)delegate
 {
-    NSLog(@"didFailWithError = %@", error);
+//    NSLog(@"didFailWithError = %@", error);
     //不存在，说明还没有alert，可以进行alert
     if (![Function userDefaultsObjForKey:LocationAlertedFlag]) {
         [Function userDefaultsSetObj:@"1" forKey:LocationAlertedFlag];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"请在设置中允许定位，否则无法获取相应位置" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"您的定位服务尚未开启，请在设置中允许定位，否则无法为您作定位服务，是否立即开启" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"去开启", nil];
         alert.tag = LocationErrorAlertTag;
         [alert show];
     }
-    
 }
+
+/** 开通知 */
++ (void)isShowSystemNotificationSetupPage:(NSInteger)buttonIndex {
+    [Function userDefaultsRemoveObjForKey:NotificationAlertedFlag];
+    if (buttonIndex == 1) {
+        
+        if (iOSVersion >= 8.0) {
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        } else {
+            NSURL*url=[NSURL URLWithString:@"prefs:root=NOTIFICATIONS_ID"];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
+        }
+    }
+}
+
++ (void)alertUserDeniedNotificationDelegate:(id)delegate {
+    if (![Function userDefaultsObjForKey:NotificationAlertedFlag]) {
+        [Function userDefaultsSetObj:@"3" forKey:NotificationAlertedFlag];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息提示" message:@"您的消息推送功能尚未开启，您将无法接收到消息服务，是否立即开启" delegate:delegate cancelButtonTitle:@"取消" otherButtonTitles:@"去开启", nil];
+        alert.tag = NotificationAlertFlag;
+        [alert show];
+    }
+}
+
+
 
 + (void)refreshLoginInfo
 {
@@ -361,7 +404,7 @@
     
     [Function userDefaultsRemoveObjForKey:@"unauthorizedAlert"];
     [Function userDefaultsRemoveObjForKey:LocationAlertedFlag];
-    
+    [Function userDefaultsRemoveObjForKey:NotificationAlertedFlag];
 }
 
 + (id)unarchiveObjectWithFile:(NSString *)path
@@ -388,7 +431,7 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSError *error;
         BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
-        NSLog(@"%d, %@", success, error);
+//        NSLog(@"%d, %@", success, error);
         
         if (success) {
             //重新创建
@@ -411,7 +454,7 @@
     dateComponents.day = dateComponents.day -(dateComponents.day -1);
     dateComponents.month = dateComponents.month -1;
     NSDate *beforeDate = [greCalendar dateFromComponents:dateComponents];
-    NSLog(@"%@",  beforeDate);
+//    NSLog(@"%@",  beforeDate);
     NSString *beforeDateStr = [Function stringFromDate:beforeDate];
     beforeDateStr = [beforeDateStr substringToIndex:10];
     

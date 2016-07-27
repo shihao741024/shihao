@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tracker_summary_false@1x.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +12,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "tracker_summary_false@3x.png",
       "scale" : "3x"
     }
   ],

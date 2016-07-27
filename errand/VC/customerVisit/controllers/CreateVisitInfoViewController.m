@@ -47,6 +47,7 @@
 {
     [super viewWillDisappear:animated];
     self.navigationController.toolbarHidden = YES;
+    
 }
 
 - (void)uiConfig
@@ -81,8 +82,12 @@
     [self addToolBarButton];
 }
 
+
+
 - (void)submitClick
 {
+    
+    NSLog(@"提交2222222222222222222222222222222");
     UIButton *button = _btnArray[0];
     if (button.selected == YES) {
         [_planCtrl uploadData];
@@ -90,6 +95,8 @@
         [_tempCtrl uploadData];
     }
 }
+
+
 
 - (void)addToolBarButton
 {

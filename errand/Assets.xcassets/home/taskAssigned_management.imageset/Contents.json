@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "任务交办1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "任务交办2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "任务交办.png",
+      "filename" : "任务交办3x.png",
       "scale" : "3x"
     }
   ],

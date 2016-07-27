@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "审批中1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "审批中2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "审批中.png",
+      "filename" : "审批中3x.png",
       "scale" : "3x"
     }
   ],

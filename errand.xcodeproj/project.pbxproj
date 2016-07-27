@@ -279,6 +279,8 @@
 		AECC37F81CDC7DA40090FB3A /* ExtendtionAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AECC37F71CDC7DA40090FB3A /* ExtendtionAlertView.m */; };
 		AEE932C71CC341CF002341FC /* DoctorFillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE932C61CC341CF002341FC /* DoctorFillViewController.m */; };
 		AEFA9AFE1CCB535C00E921EC /* AgreeDeclareReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFA9AFD1CCB535C00E921EC /* AgreeDeclareReportView.m */; };
+		BE3E50D31D3DEC7500B0F975 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3E50D21D3DEC7500B0F975 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BE3E50D51D3DEC8B00B0F975 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3E50D41D3DEC8B00B0F975 /* Security.framework */; };
 		BE4A1CE91D0FC83800ADC751 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE4A1CE81D0FC83800ADC751 /* SearchResultsViewController.m */; };
 		BE67B1F61D123D34003312D7 /* DoctorsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67B1F51D123D34003312D7 /* DoctorsViewCell.m */; };
 		BE7AC35D1D349BDA00EEC0D0 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC35C1D349BDA00EEC0D0 /* WebViewController.m */; };
@@ -294,6 +296,7 @@
 		BEF39C6D1D17C4C700B35664 /* ContactssViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF39C6C1D17C4C700B35664 /* ContactssViewController.m */; };
 		BEF39C701D17C53000B35664 /* SearchsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEF39C6F1D17C53000B35664 /* SearchsViewController.m */; };
 		C649AA011D3DB918002AF617 /* StatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C649A9FE1D3DB918002AF617 /* StatementViewController.m */; };
+		C6826FC61D472E2E00F7E3BB /* ShowSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6826FC51D472E2E00F7E3BB /* ShowSiteViewController.m */; };
 		F80E456E1C19215300D4CB06 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = F80E45671C19215300D4CB06 /* sr_refresh.png */; };
 		F80E456F1C19215300D4CB06 /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = F80E45681C19215300D4CB06 /* sr_refresh@2X.png */; };
 		F80E45701C19215300D4CB06 /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = F80E456B1C19215300D4CB06 /* SRRefreshView.m */; };
@@ -919,6 +922,9 @@
 		AEFA9AFC1CCB535C00E921EC /* AgreeDeclareReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgreeDeclareReportView.h; sourceTree = "<group>"; };
 		AEFA9AFD1CCB535C00E921EC /* AgreeDeclareReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgreeDeclareReportView.m; sourceTree = "<group>"; };
 		B269A6EC62A4BF9CC17B24B0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BE3E50D11D3DEC7500B0F975 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		BE3E50D21D3DEC7500B0F975 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		BE3E50D41D3DEC8B00B0F975 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BE4A1CE71D0FC83800ADC751 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		BE4A1CE81D0FC83800ADC751 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		BE67B1F41D123D34003312D7 /* DoctorsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorsViewCell.h; sourceTree = "<group>"; };
@@ -949,6 +955,8 @@
 		BEF39C6F1D17C53000B35664 /* SearchsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchsViewController.m; sourceTree = "<group>"; };
 		C649A9FD1D3DB918002AF617 /* StatementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementViewController.h; sourceTree = "<group>"; };
 		C649A9FE1D3DB918002AF617 /* StatementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementViewController.m; sourceTree = "<group>"; };
+		C6826FC41D472E2E00F7E3BB /* ShowSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowSiteViewController.h; sourceTree = "<group>"; };
+		C6826FC51D472E2E00F7E3BB /* ShowSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowSiteViewController.m; sourceTree = "<group>"; };
 		F80E45671C19215300D4CB06 /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
 		F80E45681C19215300D4CB06 /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
 		F80E45691C19215300D4CB06 /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
@@ -1100,6 +1108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3E50D51D3DEC8B00B0F975 /* Security.framework in Frameworks */,
 				1567E7441CC0ED2B0051EE92 /* libstdc++.6.0.9.tbd in Frameworks */,
 				1567E7421CC0ED1F0051EE92 /* libz.tbd in Frameworks */,
 				1567E7401CC0ED150051EE92 /* AddressBook.framework in Frameworks */,
@@ -1208,6 +1217,8 @@
 				15FA79DC1CBF5E45000765CC /* LocationDetailViewController.m */,
 				AE8DD6871CC63B4D00655EBB /* SignStatusListViewController.h */,
 				AE8DD6881CC63B4D00655EBB /* SignStatusListViewController.m */,
+				C6826FC41D472E2E00F7E3BB /* ShowSiteViewController.h */,
+				C6826FC51D472E2E00F7E3BB /* ShowSiteViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2184,6 +2195,7 @@
 		C52E57DCA5B9BB3C1452E358 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE3E50D41D3DEC8B00B0F975 /* Security.framework */,
 				1567E7431CC0ED2B0051EE92 /* libstdc++.6.0.9.tbd */,
 				1567E7411CC0ED1F0051EE92 /* libz.tbd */,
 				1567E73F1CC0ED150051EE92 /* AddressBook.framework */,
@@ -2339,6 +2351,8 @@
 		F822D0341C17BEE2000ED741 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				BE3E50D11D3DEC7500B0F975 /* KeychainItemWrapper.h */,
+				BE3E50D21D3DEC7500B0F975 /* KeychainItemWrapper.m */,
 				AE8DD6901CC658A600655EBB /* UMessage_Sdk_1.2.6 */,
 				AE8DD6821CC62F0C00655EBB /* UMAnalytics_Sdk_3.6.7 */,
 				1567E7381CC0ECE50051EE92 /* AMapNaviKit */,
@@ -3075,6 +3089,7 @@
 				180C32761C83E9AF0063F571 /* AssetHelper.m in Sources */,
 				18FB903B1C40F7B000443CE4 /* MissionEdittingTableViewCell.m in Sources */,
 				BEA5992E1D07BF4700CC662B /* ContactsViewController.m in Sources */,
+				BE3E50D31D3DEC7500B0F975 /* KeychainItemWrapper.m in Sources */,
 				13B65BFC1CA0DD21004A3B73 /* InformationDetailTableViewCell.m in Sources */,
 				159CB2D01CB64A74000B7CFC /* ProductionsTableViewCell.m in Sources */,
 				136325141C9FA0C700D4E699 /* DeclareNameView.m in Sources */,
@@ -3289,6 +3304,7 @@
 				1892EA2C1C292BEB00CBBF9C /* CustomerVisitBll.m in Sources */,
 				15F600EC1CB80B7900F332EC /* VisitRecordDetailViewController.m in Sources */,
 				1854A6671C2678D9003EAE94 /* MMPopupCategory.m in Sources */,
+				C6826FC61D472E2E00F7E3BB /* ShowSiteViewController.m in Sources */,
 				18695ADB1C250C3700E7B809 /* CustomerVisitViewController.m in Sources */,
 				1598FF841CB77D7100B6C673 /* GeneralTopDateChangeView.m in Sources */,
 				F822D07A1C17BF57000ED741 /* SDWebImageDownloader.m in Sources */,

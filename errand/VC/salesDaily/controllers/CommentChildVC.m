@@ -130,6 +130,9 @@
     ReportDetailVC *reportDetailVC = [[ReportDetailVC alloc]init];
     CommentMeModel *commentModel = dataArray[indexPath.row];
     reportDetailVC.reportID = commentModel.baseID;
+    reportDetailVC.automaticallyAdjustsScrollViewInsets = NO;
+    reportDetailVC.edgesForExtendedLayout = UIRectEdgeTop;
+    reportDetailVC.extendedLayoutIncludesOpaqueBars = YES;
     [self.navigationController pushViewController:reportDetailVC animated:YES];
 }
 

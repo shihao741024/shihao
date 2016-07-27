@@ -316,7 +316,11 @@
         [self hideHud];
         [Dialog simpleToast:@"提交成功"];
         _uploadFinish(_dateStr);
-        [self.navigationController popViewControllerAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+//        [self.navigationController popViewControllerAnimated:YES];
         
     } errorCB:^(NSError *error) {
         [self hideHud];

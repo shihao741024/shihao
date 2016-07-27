@@ -40,17 +40,31 @@
                     [alert show];
                     
                 }else {
+                 
                     NSLog(@"当前为最新版本");
                 }
                 
             }
-            
         } errorCB:^(NSError *error) {
             
         }];
     }
     
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex == 0) {
+        
+    }else{
+    //跳转AppStore
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/yi-lu-xing/id1111479249?mt=8"]];
+    
+    }
+    
+
+}
+
 
 - (RDVTabBarController *)setupViewControllers {
     UIStoryboard *secondStroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];

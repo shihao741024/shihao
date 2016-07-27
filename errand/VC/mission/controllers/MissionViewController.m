@@ -119,6 +119,9 @@
     
 }
 - (void)addClick{
+    //.......................
+//    NSLog(@"添加1111111111111111111111111");
+    //.......................
     MissionEdittingViewController *taskEditVC = [[MissionEdittingViewController alloc] init];
     NSArray *dataArray = @[NSLocalizedString(@"startPoint:", @"startPoint:"), NSLocalizedString(@"estination:", @"estination:"), NSLocalizedString(@"startTime:", @"startTime:"), NSLocalizedString(@"endTime:", @"endTime:"), NSLocalizedString(@"wayForBusiness:", @"wayForBusiness:"),NSLocalizedString(@"contentOfBusiness:", @"contentOfBusiness:")];
     taskEditVC.dataArray = dataArray;

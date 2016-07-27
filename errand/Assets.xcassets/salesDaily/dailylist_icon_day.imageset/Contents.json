@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "dailylist_icon_day1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "dailylist_icon_day2x.png",
       "scale" : "2x"
     },
     {

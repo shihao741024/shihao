@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "统计－未选中1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "统计－未选中2x.png",
       "scale" : "2x"
     },
     {

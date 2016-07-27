@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "打点按钮1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "打点按钮2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "打点按钮.png",
+      "filename" : "打点按钮3x.png",
       "scale" : "3x"
     }
   ],

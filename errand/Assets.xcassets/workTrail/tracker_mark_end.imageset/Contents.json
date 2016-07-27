@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "tracker_mark_end1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "tracker_mark_end2x.png",
       "scale" : "2x"
     },
     {

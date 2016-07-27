@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "taskStatus11x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "taskStatus12x.png",
       "scale" : "2x"
     },
     {

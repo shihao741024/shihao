@@ -375,14 +375,14 @@
     [_locationManager setPausesLocationUpdatesAutomatically:NO];
     [_locationManager setAllowsBackgroundLocationUpdates:YES];
     [_locationManager startUpdatingLocation];
-    NSLog(@"runLocationProcess");
+//    NSLog(@"runLocationProcess");
 }
 
 #pragma mark - AMapLocationManager Delegate
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    NSLog(@"didUpdateLocation%@", location);
+//    NSLog(@"didUpdateLocation%@", location);
     [manager stopUpdatingLocation];
     
     //        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);

@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "位置图标1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "位置图标2x.png",
       "scale" : "2x"
     },
     {

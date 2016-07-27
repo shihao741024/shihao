@@ -36,10 +36,10 @@
         
     }
     
-    NSLog(@"汇总para%@", parametert);
+//    NSLog(@"汇总para%@", parametert);
     [self post:urlStr param:parametert success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         int totalPages = [responseObject[@"totalPages"] intValue];
         if (pageIndex > totalPages) {
             [Dialog simpleToast:NoMoreData];
@@ -51,7 +51,7 @@
         }
         successArr(dataArray);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
     
@@ -69,7 +69,7 @@
     
     [self post:urlStr param:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         int totalPages = [responseObject[@"totalPages"] intValue];
         if (pageIndex > totalPages) {
             [Dialog simpleToast:NoMoreData];
@@ -81,7 +81,7 @@
         }
         successArr(dataArray);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 }
@@ -94,7 +94,7 @@
     NSDictionary *param = @{@"page":[NSNumber numberWithInt:pageIndex],@"size":@10,@"category":[NSNumber numberWithInt:category]};
     [self post:urlStr param:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         int totalPages = [responseObject[@"totalPages"] intValue];
         if (pageIndex > totalPages) {
             [Dialog simpleToast:NoMoreData];
@@ -106,7 +106,7 @@
         }
         successArr(dataArray);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
     
@@ -136,11 +136,11 @@
     
     [self post:strUrl param:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
          SalesStatisticsModel *model = [[SalesStatisticsModel alloc]initWithDic:responseObject[@"data"]];
          result(model);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-         NSLog(@"%@",error.description);
+//         NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
     
@@ -153,7 +153,7 @@
 //        NSLog(@"%@",str);
         result(1);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 }
@@ -186,11 +186,11 @@
    
     [self post:strUrl param:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         SalesStatisticsModel *model = [[SalesStatisticsModel alloc]initWithDic:responseObject[@"data"]];
         result(model);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 
@@ -211,7 +211,7 @@
         }
         successArr(dataArray);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 }

@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "cm_maplable_location_bottom_marked_icon1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "cm_maplable_location_bottom_marked_icon2x.png",
       "scale" : "2x"
     },
     {

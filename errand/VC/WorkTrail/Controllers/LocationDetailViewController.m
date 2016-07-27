@@ -8,13 +8,18 @@
 
 #import "LocationDetailViewController.h"
 #import "LocationDetailTableViewCell.h"
+#import "ShowSiteViewController.h"
 
 @interface LocationDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *_tableView;
     NSMutableArray *_dataArray;
+
 }
+
+
 @end
+
 
 @implementation LocationDetailViewController
 
@@ -69,7 +74,7 @@
     [self showHintInView:self.view];
     [Function generalPostRequest:urlStr infoDic:dic resultCB:^(id responseObject) {
         [self hideHud];
-        
+//        NSLog(@"responseObject-------------->%@",responseObject);
         [self configResult:responseObject];
     } errorCB:^(NSError *error) {
         [self hideHud];
@@ -96,6 +101,8 @@
     }
 }
 
+
+
 #pragma mark UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -104,6 +111,7 @@
     if (!cell) {
         cell = [[LocationDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellid];
     }
+
     [cell fillData:_dataArray[indexPath.row]];
     return cell;
 }
@@ -136,8 +144,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSLog(@" _dataArray[indexPath.row]------------------>%@", _dataArray[indexPath.row]);
+    CLLocationDegrees lat =  [_dataArray[indexPath.row][@"coordinate"][@"latitude"] doubleValue];
+    CLLocationDegrees lon = [_dataArray[indexPath.row][@"coordinate"][@"longitude"] doubleValue];
+    NSString *titleStr = _dataArray[indexPath.row][@"createDate"];
+    NSString *subtilte= _dataArray[indexPath.row][@"coordinate"][@"name"];
+//    NSLog(@"lat:%f",lat);
+//    NSLog(@"lon:%f",lon);
+    
+       
+    
+    ShowSiteViewController *siteVC = [[ShowSiteViewController alloc]init];
+    siteVC.lat = lat;
+    siteVC.lon = lon;
+    siteVC.datetitle = titleStr;
+    siteVC.siteTitle = subtilte;
+    [self.navigationController pushViewController:siteVC animated:NO];
+    
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

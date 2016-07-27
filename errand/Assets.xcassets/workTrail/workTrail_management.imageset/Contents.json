@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "workTrail_management@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "workTrail_management@2x.png",
       "scale" : "2x"
     },
     {

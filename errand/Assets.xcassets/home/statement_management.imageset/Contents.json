@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "statement_management.png",
+      "filename" : "statement_management1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "statement_management2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "statement_management3x.png",
       "scale" : "3x"
     }
   ],

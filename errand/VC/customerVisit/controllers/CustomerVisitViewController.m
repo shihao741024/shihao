@@ -25,6 +25,9 @@
     VisitRecordViewController *view1;
     
     UIView *bgView;
+    
+    UIButton *_rightBtn;
+    UIButton *_searchBtn;
 }
 
 
@@ -98,18 +101,20 @@
 }
 
 - (void)createRightItems{
-    UIButton * rightBtnOne = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 65, 30)];
-    [rightBtnOne setTitle:@"拜访管理" forState:UIControlStateNormal];
-    [rightBtnOne setTitleColor:[UIColor colorWithRed:0.278 green:0.616 blue:0.863 alpha:1.000] forState:UIControlStateNormal];
-    [rightBtnOne.titleLabel setFont:[UIFont systemFontOfSize:16]];
-    [rightBtnOne addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
-    UIButton * rightBtnTwo = [[UIButton alloc] initWithFrame:CGRectMake(70, 5, 30, 30)];
-    [rightBtnTwo setBackgroundImage:[[UIImage imageNamed:@"add_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]  forState:UIControlStateNormal];
-    [rightBtnTwo setBackgroundImage:[[UIImage imageNamed:@"add_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateHighlighted];
-    [rightBtnTwo addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
+    _searchBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 65, 30)];
+    [_searchBtn setTitle:@"拜访管理" forState:UIControlStateNormal];
+    [_searchBtn setTitleColor:[UIColor colorWithRed:0.278 green:0.616 blue:0.863 alpha:1.000] forState:UIControlStateNormal];
+    [_searchBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_searchBtn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
+    _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(70, 5, 30, 30)];
+    [_rightBtn setBackgroundImage:[[UIImage imageNamed:@"add_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]  forState:UIControlStateNormal];
+    [_rightBtn setBackgroundImage:[[UIImage imageNamed:@"add_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateHighlighted];
+    [_rightBtn addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
+
+//    rightBtnTwo.userInteractionEnabled = NO;
     bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
 //    [bgView addSubview:rightBtnOne];
-    [bgView addSubview:rightBtnTwo];
+    [bgView addSubview:_rightBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:bgView];
     
 }
@@ -125,10 +130,22 @@
     [countButton addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+
+
+
+
 - (void)addClick{
     
     CreateVisitInfoViewController *createVisitCtrl = [[CreateVisitInfoViewController alloc] init];
+    
+    
     [self.navigationController pushViewController:createVisitCtrl animated:YES];
+    _rightBtn.enabled = NO;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _rightBtn.enabled = YES;
+    });
     [createVisitCtrl uploadFinishRefreshAction:^(NSString *dateStr){
         view.dateStr = dateStr;
         [view refreshData];
@@ -138,8 +155,15 @@
 }
 
 - (void)searchClick{
+    
+    NSLog(@"1111111111111111111111111111");
     VisitManagerViewController *visitManagerVC = [[VisitManagerViewController alloc]init];
     [self.navigationController pushViewController:visitManagerVC animated:YES];
+    _searchBtn.enabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _searchBtn.enabled = YES;
+    });
+    
 }
 
 /*

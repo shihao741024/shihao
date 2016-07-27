@@ -145,9 +145,6 @@ CGFloat titleSpace = 10;
     [attri addAttribute:NSLinkAttributeName value:@(NSUnderlineStyleSingle) range:detailRange];
     [attri addAttribute:NSFontAttributeName value:GDBFont(17) range:NSMakeRange(0, nameStr.length)];
     
-//    NSUInteger length = [nameStr length];
-//    [attri addAttribute:NSUnderlineStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, length)];
-//    [attri addAttribute:NSStrikethroughColorAttributeName value:COMMON_FONT_BLACK_COLOR range:NSMakeRange(0, length)];
     [_nameLabel setAttributedText:attri];
     
     _nameLabel.userInteractionEnabled = YES;

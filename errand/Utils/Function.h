@@ -63,10 +63,15 @@
 
 //是否跳转系统设置定位页面
 + (void)isShowSystemLocationSetupPage:(NSInteger)buttonIndex;
-
-
 //用户没有开启定位
 + (void)alertUserDeniedLocation:(NSError *)error delegate:(id)delegate;
+
+//是否跳转系统设置通知页面
++ (void)isShowSystemNotificationSetupPage:(NSInteger)buttonIndex;
+//用户没有开启通知
++ (void)alertUserDeniedNotificationDelegate:(id)delegate;
+
+
 //刷新登录信息
 + (void)refreshLoginInfo;
 

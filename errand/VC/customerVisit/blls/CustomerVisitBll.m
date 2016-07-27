@@ -17,11 +17,11 @@
     NSString *urlStr = @"/api/v1/sale/visitplans/own";
 //    NSDictionary *param = @{@"visitDate":visitDate,@"category":category,@"page":[NSNumber numberWithInt:pageIndex],@"size":@10};
     NSDictionary *param = @{@"visitDate":visitDate};
-    NSLog(@"%@", param);
+//    NSLog(@"%@", param);
     
     [self post:urlStr param:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         
         NSMutableArray *array = [NSMutableArray arrayWithArray:responseObject];
         if (array.count == 0) {
@@ -36,7 +36,7 @@
         successArr((int)array.count, dataArray);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
     
@@ -46,11 +46,11 @@
     NSString *urlStr = [NSString stringWithFormat:@"/api/v1/sale/visitplans/%@",visitID];
     [self get:urlStr param:nil headerParam:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSString *str = [responseObject mj_JSONString];
-    NSLog(@"%@",str);
+//    NSLog(@"%@",str);
         VisitDetailModel *model = [[VisitDetailModel alloc]initWithDic:responseObject];
         result(model);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 
@@ -64,10 +64,10 @@
     NSDictionary *param = @{@"startDate":startDate,@"endDate":endDate};
     [self post:urlStr param:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         sucessManager(dataArray);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
             [viewCtrl hideHud];
     }];
 
@@ -90,14 +90,14 @@
 {
     NSString *strUrl=@"/api/v1/sale/visitplans/create";
     NSDictionary *param=@{@"doctor":@{@"id":doctor},@"hospital":@{@"id":Hospital},@"production":@{@"id":production},@"visitDate":visitDate,@"content":content,@"category":category};
-    NSLog(@"%@",param);
+//    NSLog(@"%@",param);
     [self post:strUrl param:param  success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         CustomerVisitModel *model = [[CustomerVisitModel alloc]initWithDic:responseObject[@"data"]];
         result(model);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error,BOOL hasCon) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 }
@@ -114,10 +114,10 @@
     
     [self post:urlStr param:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *str = [responseObject mj_JSONString];
-        NSLog(@"%@",str);
+//        NSLog(@"%@",str);
         result(responseObject[@"data"]);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error, BOOL hasCon) {
-          NSLog(@"%@",error.description);
+//          NSLog(@"%@",error.description);
         [viewCtrl hideHud];
     }];
 }

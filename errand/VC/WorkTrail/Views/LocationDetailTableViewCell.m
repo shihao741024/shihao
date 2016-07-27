@@ -43,6 +43,8 @@
 
 - (void)fillData:(NSDictionary *)dic
 {
+    
+    
     _timeLabel.text = dic[@"createDate"];
     
     NSString *address = dic[@"coordinate"][@"name"];

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface LocationDetailViewController : UIViewController
 
 @property (nonatomic, copy) NSString *saleId;
 //每天截至时间
 @property (nonatomic, copy) NSString *startDate;
+
+
 
 @end

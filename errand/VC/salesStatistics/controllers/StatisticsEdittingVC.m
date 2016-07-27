@@ -723,7 +723,7 @@
             
             [Dialog simpleToast:@"相关信息未完善"];
         }else{
-            self.navigationItem.rightBarButtonItem.action = nil;
+//            self.navigationItem.rightBarButtonItem.action = nil;
             [self showHintInView:self.view];
             SalesStatisticsBll *salesBll = [[SalesStatisticsBll alloc]init];
             //                来判断是编辑还是上报

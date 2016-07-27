@@ -67,7 +67,7 @@
         [self.locationManager setPausesLocationUpdatesAutomatically:NO];
         [self.locationManager setAllowsBackgroundLocationUpdates:YES];
         [self.locationManager startUpdatingLocation];
-        NSLog(@"runLocationProcess");
+//        NSLog(@"runLocationProcess");
     }
     
 }
@@ -76,7 +76,7 @@
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    NSLog(@"didUpdateLocation%@", location);
+//    NSLog(@"didUpdateLocation%@", location);
     
     OriginalPointModel *model = [[OriginalPointModel alloc] initWithLocation:location latitude:location.coordinate.latitude longitude:location.coordinate.longitude];
     [[OriginalPointDBManager shareManager] insertModel:model];

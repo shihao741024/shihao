@@ -38,7 +38,19 @@
 {
     NSLog(@"OrganizationalChildViewController%@", _staffModel.originalDic);
     _titleArray = @[@"员工姓名：", @"所属部门：", @"联系电话：", @"微信：", @"邮箱："];
-    _dataArray = @[_staffModel.staffName, _staffModel.departmentName, _staffModel.phoneNumber, _staffModel.weixin, _staffModel.email];
+    NSString *staffName = [self strIsNull:_staffModel.staffName];
+    NSString *departmentName = [self strIsNull:_staffModel.departmentName];
+    NSString *phoneNumber = [self strIsNull:_staffModel.phoneNumber];
+    NSString *weixin = [self strIsNull:_staffModel.weixin];
+    NSString *email = [self strIsNull:_staffModel.email];
+    _dataArray = @[staffName, departmentName,phoneNumber,weixin,email];
+}
+
+-(NSString *)strIsNull:(NSString *)str{
+    if ([str isEqual:[NSNull null]] || str == nil) {
+        return @"";
+    }
+    return str;
 }
 
 - (void)uiConfig

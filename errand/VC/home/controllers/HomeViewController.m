@@ -19,6 +19,7 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "ContactViewController.h"
 #import "ContactsViewController.h"
+#import "StatementViewController.h"
 
 @interface HomeViewController ()<SDHomeGridViewDeleate,AMapLocationManagerDelegate,AMapSearchDelegate>
 
@@ -48,6 +49,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    if (iOSVersion >= 8.0) {
+        if ([[UIApplication sharedApplication] currentUserNotificationSettings].types  == UIRemoteNotificationTypeNone) {
+            [Function alertUserDeniedNotificationDelegate:self];
+        }
+    }else {
+        if ([[UIApplication sharedApplication] enabledRemoteNotificationTypes]  == UIRemoteNotificationTypeNone) {
+            [Function alertUserDeniedNotificationDelegate:self];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -201,6 +211,12 @@
                 ContactsViewController *vc = (ContactsViewController *)view;
                 vc.phonebook = YES;
             }
+//            if ([view isKindOfClass:[StatementViewController class]]) {
+//                view.automaticallyAdjustsScrollViewInsets = NO;
+//                view.edgesForExtendedLayout = UIRectEdgeTop;
+//                view.extendedLayoutIncludesOpaqueBars = YES;
+//            }
+            
         [self.navigationController pushViewController:view animated:true];
         }
 
@@ -244,14 +260,14 @@
     [_locationManager setPausesLocationUpdatesAutomatically:NO];
     [_locationManager setAllowsBackgroundLocationUpdates:YES];
     [_locationManager startUpdatingLocation];
-    NSLog(@"runLocationProcess");
+//    NSLog(@"runLocationProcess");
 }
 
 #pragma mark - AMapLocationManager Delegate
 
 - (void)amapLocationManager:(AMapLocationManager *)manager didUpdateLocation:(CLLocation *)location
 {
-    NSLog(@"didUpdateLocation%@", location);
+//    NSLog(@"didUpdateLocation%@", location);
     [manager stopUpdatingLocation];
     
     //初始化检索对象
@@ -277,6 +293,9 @@
 {
     if (alertView.tag == LocationErrorAlertTag) {
         [Function isShowSystemLocationSetupPage:buttonIndex];
+    }
+    if (alertView.tag == NotificationAlertFlag) {
+        [Function isShowSystemNotificationSetupPage:buttonIndex];
     }
 }
 
